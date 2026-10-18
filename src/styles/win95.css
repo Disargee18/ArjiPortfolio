@@ -1,0 +1,306 @@
+/* ============================================================
+   AUTHENTIC WINDOWS 95 DESIGN SYSTEM & CONTROLS
+   - Pixel-perfect 3D beveled borders & lighting
+   - Classic Windows 95 gray palette (#c0c0c0)
+   - Iconic navy blue gradient title bars
+   - Native Windows 95 tabs, buttons, group boxes & sunken wells
+   ============================================================ */
+
+:root {
+  --w95-surface: #c0c0c0;
+  --w95-surface-light: #dfdfdf;
+  --w95-highlight: #ffffff;
+  --w95-shadow-dark: #000000;
+  --w95-shadow-light: #808080;
+  --w95-teal: #008080;
+  --w95-navy-dark: #000080;
+  --w95-navy-light: #1084d0;
+  --w95-title-inactive: #808080;
+  --w95-font: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, -apple-system, sans-serif;
+  --w95-font-mono: "Fixedsys", "Lucida Console", "Courier New", monospace;
+}
+
+/* Reset and base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--w95-font);
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--w95-teal);
+  user-select: none;
+}
+
+/* 3D Bevel Out (Raised button / window frame) */
+.win95-raised {
+  background-color: var(--w95-surface);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark),
+    inset 2px 2px 0px var(--w95-surface-light),
+    inset -2px -2px 0px var(--w95-shadow-light);
+}
+
+/* 3D Bevel In (Sunken text field / well / status bar) */
+.win95-sunken {
+  background-color: #ffffff;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light),
+    inset -2px -2px 0px var(--w95-surface-light);
+}
+
+.win95-sunken-gray {
+  background-color: var(--w95-surface);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-light),
+    inset -1px -1px 0px var(--w95-highlight);
+}
+
+/* Classic Windows 95 Button */
+.win95-btn {
+  background-color: var(--w95-surface);
+  color: #000000;
+  border: none;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 12px;
+  min-height: 23px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark),
+    inset 2px 2px 0px var(--w95-surface-light),
+    inset -2px -2px 0px var(--w95-shadow-light);
+}
+
+.win95-btn:hover {
+  filter: brightness(1.02);
+}
+
+.win95-btn:active,
+.win95-btn.active {
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light),
+    inset -2px -2px 0px var(--w95-surface-light);
+  padding: 4px 11px 2px 13px; /* authentic 1px text displacement on click */
+}
+
+.win95-btn:focus {
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+
+.win95-btn:disabled,
+.win95-btn[disabled] {
+  color: var(--w95-shadow-light);
+  text-shadow: 1px 1px 0 var(--w95-highlight);
+  cursor: not-allowed;
+  filter: none;
+}
+
+/* Classic Title Bar */
+.win95-titlebar {
+  height: 22px;
+  padding: 2px 3px 2px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, var(--w95-navy-dark) 0%, var(--w95-navy-light) 100%);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  cursor: default;
+}
+
+.win95-titlebar.inactive {
+  background: var(--w95-title-inactive);
+  color: #c0c0c0;
+}
+
+.win95-title-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.win95-title-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.win95-title-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.win95-title-btn {
+  width: 16px;
+  height: 14px;
+  background-color: var(--w95-surface);
+  color: #000000;
+  border: none;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark),
+    inset 2px 2px 0px var(--w95-surface-light),
+    inset -2px -2px 0px var(--w95-shadow-light);
+}
+
+.win95-title-btn:active {
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight);
+  padding-top: 1px;
+  padding-left: 1px;
+}
+
+/* Windows 95 Group Box */
+.win95-groupbox {
+  position: relative;
+  border: 2px groove #ffffff;
+  padding: 14px 10px 10px 10px;
+  margin: 12px 0 8px 0;
+  background-color: transparent;
+}
+
+.win95-groupbox-legend {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  padding: 0 4px;
+  background-color: var(--w95-surface);
+  font-size: 11px;
+  font-weight: 600;
+  color: #000000;
+}
+
+/* Windows 95 Tab Strip */
+.win95-tabs-container {
+  display: flex;
+  gap: 2px;
+  border-bottom: 2px solid var(--w95-highlight);
+  padding: 0 6px;
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 2;
+}
+
+.win95-tab {
+  background-color: var(--w95-surface);
+  color: #000000;
+  border: none;
+  font-size: 11px;
+  padding: 4px 10px 3px 10px;
+  cursor: pointer;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px 0px 0px var(--w95-shadow-dark),
+    inset 0px 1px 0px var(--w95-highlight);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  position: relative;
+  top: 1px;
+}
+
+.win95-tab.active {
+  padding: 5px 12px 5px 12px;
+  font-weight: bold;
+  top: -1px;
+  background-color: var(--w95-surface);
+  border-bottom: 2px solid var(--w95-surface);
+  z-index: 3;
+}
+
+/* Windows 95 Status Bar */
+.win95-statusbar {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  gap: 4px;
+  font-size: 11px;
+  background-color: var(--w95-surface);
+}
+
+.win95-status-field {
+  flex: 1;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  background-color: var(--w95-surface);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-light),
+    inset -1px -1px 0px var(--w95-highlight);
+  font-size: 10px;
+  color: #333333;
+}
+
+.win95-status-field.fixed {
+  flex: none;
+  width: 90px;
+  justify-content: center;
+}
+
+/* Retro scrollbars */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+  background-color: var(--w95-surface);
+}
+
+::-webkit-scrollbar-track {
+  background-color: #e0e0e0;
+  background-image: linear-gradient(45deg, #c0c0c0 25%, transparent 25%), 
+                    linear-gradient(-45deg, #c0c0c0 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #c0c0c0 75%), 
+                    linear-gradient(-45deg, transparent 75%, #c0c0c0 75%);
+  background-size: 2px 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--w95-surface);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark),
+    inset 2px 2px 0px var(--w95-surface-light),
+    inset -2px -2px 0px var(--w95-shadow-light);
+}
+
+::-webkit-scrollbar-button {
+  background-color: var(--w95-surface);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark),
+    inset 2px 2px 0px var(--w95-surface-light),
+    inset -2px -2px 0px var(--w95-shadow-light);
+}

@@ -1,0 +1,2572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Argee Boy Paquibot — Windows 95 Portfolio</title>
+    <meta
+      name="description"
+      content="Interactive retro Windows 95 desktop portfolio of Argee Boy Paquibot — Full-Stack Developer, Hackathon Champion, and Student Leader."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>"
+    />
+    <style>
+      /* ============================================================
+         AUTHENTIC WINDOWS 95 DESIGN SYSTEM & CONTROLS
+         ============================================================ */
+      :root {
+        --w95-surface: #c0c0c0;
+        --w95-surface-light: #dfdfdf;
+        --w95-highlight: #ffffff;
+        --w95-shadow-dark: #000000;
+        --w95-shadow-light: #808080;
+        --w95-teal: #008080;
+        --w95-navy-dark: #000080;
+        --w95-navy-light: #1084d0;
+        --w95-title-inactive: #808080;
+        --w95-font: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, -apple-system, sans-serif;
+        --w95-font-mono: "Fixedsys", "Lucida Console", "Courier New", monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: var(--w95-font);
+        -webkit-font-smoothing: none;
+        font-smooth: never;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background-color: var(--w95-teal);
+        user-select: none;
+      }
+
+      .win95-raised {
+        background-color: var(--w95-surface);
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-highlight),
+          inset -1px -1px 0px var(--w95-shadow-dark),
+          inset 2px 2px 0px var(--w95-surface-light),
+          inset -2px -2px 0px var(--w95-shadow-light);
+      }
+
+      .win95-sunken {
+        background-color: #ffffff;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight),
+          inset 2px 2px 0px var(--w95-shadow-light),
+          inset -2px -2px 0px var(--w95-surface-light);
+      }
+
+      .win95-btn {
+        background-color: var(--w95-surface);
+        color: #000000;
+        border: none;
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 12px;
+        min-height: 23px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        text-decoration: none;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-highlight),
+          inset -1px -1px 0px var(--w95-shadow-dark),
+          inset 2px 2px 0px var(--w95-surface-light),
+          inset -2px -2px 0px var(--w95-shadow-light);
+      }
+
+      .win95-btn:hover {
+        filter: brightness(1.02);
+      }
+
+      .win95-btn:active,
+      .win95-btn.active {
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight),
+          inset 2px 2px 0px var(--w95-shadow-light),
+          inset -2px -2px 0px var(--w95-surface-light);
+        padding: 4px 11px 2px 13px;
+      }
+
+      .win95-btn:disabled,
+      .win95-btn[disabled] {
+        color: var(--w95-shadow-light);
+        text-shadow: 1px 1px 0 var(--w95-highlight);
+        cursor: not-allowed;
+        filter: none;
+      }
+
+      .win95-titlebar {
+        height: 22px;
+        padding: 2px 3px 2px 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(90deg, var(--w95-navy-dark) 0%, var(--w95-navy-light) 100%);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: 0.3px;
+        cursor: default;
+      }
+
+      .win95-titlebar.inactive {
+        background: var(--w95-title-inactive);
+        color: #c0c0c0;
+      }
+
+      .win95-title-left {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .win95-title-controls {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+      }
+
+      .win95-title-btn {
+        width: 16px;
+        height: 14px;
+        background-color: var(--w95-surface);
+        color: #000000;
+        border: none;
+        font-size: 9px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-highlight),
+          inset -1px -1px 0px var(--w95-shadow-dark),
+          inset 2px 2px 0px var(--w95-surface-light),
+          inset -2px -2px 0px var(--w95-shadow-light);
+      }
+
+      .win95-title-btn:active {
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight);
+        padding-top: 1px;
+        padding-left: 1px;
+      }
+
+      .win95-groupbox {
+        position: relative;
+        border: 2px groove #ffffff;
+        padding: 14px 10px 10px 10px;
+        margin: 12px 0 8px 0;
+        background-color: transparent;
+      }
+
+      .win95-groupbox-legend {
+        position: absolute;
+        top: -8px;
+        left: 10px;
+        padding: 0 4px;
+        background-color: var(--w95-surface);
+        font-size: 11px;
+        font-weight: 600;
+        color: #000000;
+      }
+
+      .win95-tabs-container {
+        display: flex;
+        gap: 2px;
+        border-bottom: 2px solid var(--w95-highlight);
+        padding: 0 6px;
+        margin-bottom: -1px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .win95-tab {
+        background-color: var(--w95-surface);
+        color: #000000;
+        border: none;
+        font-size: 11px;
+        padding: 4px 10px 3px 10px;
+        cursor: pointer;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-highlight),
+          inset -1px 0px 0px var(--w95-shadow-dark),
+          inset 0px 1px 0px var(--w95-highlight);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        position: relative;
+        top: 1px;
+      }
+
+      .win95-tab.active {
+        padding: 5px 12px 5px 12px;
+        font-weight: bold;
+        top: -1px;
+        background-color: var(--w95-surface);
+        border-bottom: 2px solid var(--w95-surface);
+        z-index: 3;
+      }
+
+      .win95-statusbar {
+        height: 22px;
+        display: flex;
+        align-items: center;
+        padding: 0 4px;
+        gap: 4px;
+        font-size: 11px;
+        background-color: var(--w95-surface);
+      }
+
+      .win95-status-field {
+        flex: 1;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        padding: 0 6px;
+        background-color: var(--w95-surface);
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-light),
+          inset -1px -1px 0px var(--w95-highlight);
+        font-size: 10px;
+        color: #333333;
+      }
+
+      .win95-status-field.fixed {
+        flex: none;
+        width: 100px;
+        justify-content: center;
+      }
+
+      /* Desktop & Icons */
+      .w95-desktop {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background-color: var(--w95-teal);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .w95-desktop-icons {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        gap: 20px 24px;
+        z-index: 1;
+      }
+
+      .w95-desktop-icon {
+        width: 76px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        background: transparent;
+        border: 1px dotted transparent;
+        padding: 4px 2px;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .w95-desktop-icon:hover {
+        background: rgba(0, 0, 128, 0.15);
+      }
+
+      .w95-desktop-icon.selected {
+        border-color: #ffff80;
+        background-color: rgba(0, 0, 128, 0.6);
+      }
+
+      .w95-desktop-icon.selected .w95-icon-label {
+        background-color: var(--w95-navy-dark);
+        color: #ffffff;
+      }
+
+      .w95-icon-graphic {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.45));
+      }
+
+      .w95-icon-label {
+        font-size: 11px;
+        color: #ffffff;
+        text-shadow: 1px 1px 1px #000000;
+        padding: 1px 3px;
+        word-break: break-word;
+        line-height: 1.2;
+      }
+
+      /* Windows Layer */
+      .w95-windows-container {
+        position: absolute;
+        inset: 0;
+        bottom: 30px;
+        pointer-events: none;
+      }
+
+      .w95-window {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-highlight),
+          inset -1px -1px 0px var(--w95-shadow-dark),
+          inset 2px 2px 0px var(--w95-surface-light),
+          inset -2px -2px 0px var(--w95-shadow-light),
+          3px 3px 10px rgba(0, 0, 0, 0.4);
+        background-color: var(--w95-surface);
+        min-width: 320px;
+        min-height: 220px;
+        overflow: hidden;
+      }
+
+      .w95-window.maximized {
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        box-shadow: none;
+      }
+
+      .w95-window.minimized {
+        display: none;
+      }
+
+      .w95-window-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background-color: var(--w95-surface);
+        padding: 6px;
+      }
+
+      .w95-window-inner-content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: var(--w95-surface);
+      }
+
+      .w95-resize-handle {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 14px;
+        height: 14px;
+        cursor: se-resize;
+        background: 
+          linear-gradient(135deg, transparent 0%, transparent 50%, var(--w95-shadow-light) 50%, var(--w95-shadow-light) 60%, transparent 60%, transparent 70%, var(--w95-shadow-light) 70%, var(--w95-shadow-light) 80%, transparent 80%, transparent 90%, var(--w95-shadow-light) 90%);
+      }
+
+      /* Taskbar */
+      .w95-taskbar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background-color: var(--w95-surface);
+        display: flex;
+        align-items: center;
+        padding: 2px 3px;
+        gap: 4px;
+        z-index: 9999;
+        box-shadow: 
+          inset 0 1px 0px var(--w95-highlight),
+          inset 0 2px 0px var(--w95-surface-light);
+        border-top: 1px solid var(--w95-highlight);
+      }
+
+      .w95-start-btn {
+        height: 24px;
+        padding: 2px 6px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        font-weight: bold;
+        background-color: var(--w95-surface);
+        border: none;
+        cursor: pointer;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-highlight),
+          inset -1px -1px 0px var(--w95-shadow-dark),
+          inset 2px 2px 0px var(--w95-surface-light),
+          inset -2px -2px 0px var(--w95-shadow-light);
+      }
+
+      .w95-start-btn:active,
+      .w95-start-btn.active {
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight),
+          inset 2px 2px 0px var(--w95-shadow-light),
+          inset -2px -2px 0px var(--w95-surface-light);
+        padding: 3px 5px 1px 7px;
+      }
+
+      .w95-logo-quad {
+        display: grid;
+        grid-template-columns: 7px 7px;
+        grid-template-rows: 7px 7px;
+        gap: 1px;
+        transform: rotate(-10deg) skew(-5deg, -5deg);
+      }
+
+      .w95-logo-red { background-color: #ff3333; }
+      .w95-logo-green { background-color: #33cc33; }
+      .w95-logo-blue { background-color: #0066cc; }
+      .w95-logo-yellow { background-color: #ffcc00; }
+
+      .w95-taskbar-tasks {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        overflow-x: auto;
+        height: 100%;
+      }
+
+      .w95-taskbar-item {
+        height: 24px;
+        max-width: 170px;
+        min-width: 110px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 2px 8px;
+        font-size: 11px;
+        background-color: var(--w95-surface);
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        overflow: hidden;
+        white-space: nowrap;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-highlight),
+          inset -1px -1px 0px var(--w95-shadow-dark),
+          inset 2px 2px 0px var(--w95-surface-light),
+          inset -2px -2px 0px var(--w95-shadow-light);
+      }
+
+      .w95-taskbar-item.active {
+        background-color: #dedede;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight),
+          inset 2px 2px 0px var(--w95-shadow-light),
+          inset -2px -2px 0px var(--w95-surface-light);
+        font-weight: bold;
+      }
+
+      .w95-taskbar-item span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .w95-tray {
+        height: 24px;
+        padding: 2px 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: var(--w95-surface);
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-light),
+          inset -1px -1px 0px var(--w95-highlight);
+        font-size: 11px;
+      }
+
+      .w95-tray-audio-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 13px;
+        line-height: 1;
+      }
+
+      /* Start Menu */
+      .w95-start-menu {
+        position: absolute;
+        bottom: 30px;
+        left: 2px;
+        width: 210px;
+        background-color: var(--w95-surface);
+        display: flex;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-highlight),
+          inset -1px -1px 0px var(--w95-shadow-dark),
+          inset 2px 2px 0px var(--w95-surface-light),
+          inset -2px -2px 0px var(--w95-shadow-light),
+          3px 3px 8px rgba(0, 0, 0, 0.4);
+        z-index: 10000;
+      }
+
+      .w95-start-sidebar {
+        width: 28px;
+        background: linear-gradient(180deg, var(--w95-navy-dark) 0%, #000040 100%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 8px;
+      }
+
+      .w95-start-sidebar-text {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+
+      .w95-start-sidebar-text span {
+        color: #c0c0c0;
+        font-weight: normal;
+      }
+
+      .w95-start-items {
+        flex: 1;
+        padding: 4px 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .w95-start-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 12px;
+        font-size: 11px;
+        color: #000000;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: left;
+        width: 100%;
+      }
+
+      .w95-start-item:hover {
+        background-color: var(--w95-navy-dark);
+        color: #ffffff;
+      }
+
+      .w95-start-divider {
+        height: 2px;
+        margin: 4px 6px;
+        border-top: 1px solid var(--w95-shadow-light);
+        border-bottom: 1px solid var(--w95-highlight);
+      }
+
+      /* About App */
+      .about-app {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        font-size: 11px;
+      }
+
+      .about-hero {
+        display: flex;
+        gap: 14px;
+        padding: 10px;
+        background-color: #ffffff;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight),
+          inset 2px 2px 0px var(--w95-shadow-light),
+          inset -2px -2px 0px var(--w95-surface-light);
+      }
+
+      .about-avatar-frame {
+        width: 72px;
+        height: 72px;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, #000080, #1084d0);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-highlight),
+          inset -1px -1px 0px var(--w95-shadow-dark);
+      }
+
+      .about-avatar-initials {
+        font-size: 26px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      .about-avatar-sub {
+        font-size: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #ffff80;
+      }
+
+      .about-hero-details {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        justify-content: center;
+      }
+
+      .about-name {
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--w95-navy-dark);
+      }
+
+      .about-role {
+        font-size: 11px;
+        font-weight: 600;
+        color: #333333;
+      }
+
+      .about-location {
+        font-size: 10px;
+        color: #555555;
+      }
+
+      .about-summary-box {
+        padding: 8px 10px;
+        line-height: 1.45;
+        color: #111111;
+        background: #ffffff;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-light),
+          inset -1px -1px 0px var(--w95-highlight);
+        font-size: 11px;
+      }
+
+      .about-skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 10px;
+      }
+
+      .about-skill-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-bottom: 6px;
+      }
+
+      .about-skill-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        font-weight: 500;
+      }
+
+      .about-meter-track {
+        height: 12px;
+        background-color: #ffffff;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight);
+        padding: 1px;
+        display: flex;
+      }
+
+      .about-meter-fill {
+        height: 100%;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--w95-navy-dark) 0px,
+          var(--w95-navy-dark) 6px,
+          #ffffff 6px,
+          #ffffff 8px
+        );
+      }
+
+      .about-edu-card {
+        background: #ffffff;
+        padding: 8px;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-light),
+          inset -1px -1px 0px var(--w95-highlight);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .about-edu-badges {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+      }
+
+      .about-badge {
+        background-color: #e8e8e8;
+        border: 1px solid #999999;
+        padding: 2px 6px;
+        font-size: 10px;
+        font-weight: bold;
+        color: var(--w95-navy-dark);
+      }
+
+      .about-contacts-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 6px;
+      }
+
+      /* Projects App */
+      .projects-app {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background-color: var(--w95-surface);
+      }
+
+      .ie-menubar {
+        display: flex;
+        gap: 12px;
+        padding: 2px 6px;
+        font-size: 11px;
+        border-bottom: 1px solid var(--w95-shadow-light);
+      }
+
+      .ie-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        padding: 3px 6px;
+        border-bottom: 1px solid var(--w95-shadow-light);
+      }
+
+      .ie-tool-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2px 6px;
+        background: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+        font-size: 9px;
+      }
+
+      .ie-tool-btn:hover {
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-highlight),
+          inset -1px -1px 0px var(--w95-shadow-dark);
+      }
+
+      .ie-address-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 6px;
+        border-bottom: 2px groove #ffffff;
+      }
+
+      .ie-address-input {
+        flex: 1;
+        height: 20px;
+        padding: 0 6px;
+        background-color: #ffffff;
+        border: none;
+        font-size: 11px;
+        font-family: var(--w95-font-mono);
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight),
+          inset 2px 2px 0px var(--w95-shadow-light);
+      }
+
+      .ie-viewport {
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+        background-color: #ffffff;
+        margin: 4px;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight),
+          inset 2px 2px 0px var(--w95-shadow-light);
+      }
+
+      .ie-project-sidebar {
+        width: 175px;
+        background-color: var(--w95-surface);
+        border-right: 2px groove #ffffff;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+
+      .ie-sidebar-header {
+        padding: 6px 8px;
+        font-size: 10px;
+        font-weight: bold;
+        background-color: #dedede;
+        border-bottom: 1px solid var(--w95-shadow-light);
+      }
+
+      .ie-project-tab-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 8px;
+        font-size: 11px;
+        text-align: left;
+        background: none;
+        border: none;
+        border-bottom: 1px dotted var(--w95-shadow-light);
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .ie-project-tab-btn.active {
+        background-color: var(--w95-navy-dark);
+        color: #ffffff;
+        font-weight: bold;
+      }
+
+      .ie-project-display {
+        flex: 1;
+        overflow-y: auto;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        font-size: 11px;
+      }
+
+      .project-award-banner {
+        padding: 6px 10px;
+        border: 1px dashed #b8860b;
+        background-color: #fffde6;
+        color: #8b6508;
+        font-weight: bold;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .project-award-banner.gold {
+        border-color: #d4af37;
+        background-color: #fff9db;
+        color: #806000;
+      }
+
+      .project-award-banner.silver {
+        border-color: #7f8c8d;
+        background-color: #f2f3f4;
+        color: #2c3e50;
+      }
+
+      .project-title-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        border-bottom: 2px solid var(--w95-navy-dark);
+        padding-bottom: 4px;
+      }
+
+      .project-main-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--w95-navy-dark);
+      }
+
+      .project-category {
+        font-size: 11px;
+        color: #555555;
+        font-style: italic;
+      }
+
+      .project-bullets-list {
+        padding-left: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        line-height: 1.4;
+      }
+
+      .project-tech-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .project-tech-chip {
+        background-color: #f0f0f0;
+        border: 1px solid #999999;
+        padding: 2px 7px;
+        font-size: 10px;
+        font-family: var(--w95-font-mono);
+      }
+
+      .project-action-buttons {
+        display: flex;
+        gap: 8px;
+        margin-top: 6px;
+      }
+
+      /* Achievements App */
+      .awards-app {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 8px;
+        gap: 8px;
+      }
+
+      .awards-header-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4px 8px;
+        background-color: #ffffff;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-light),
+          inset -1px -1px 0px var(--w95-highlight);
+      }
+
+      .awards-layout {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .awards-list-panel {
+        background-color: #ffffff;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .award-item-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        border: none;
+        border-bottom: 1px solid #eeeeee;
+        background: none;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+      }
+
+      .award-item-btn.selected {
+        background-color: var(--w95-navy-dark);
+        color: #ffffff;
+      }
+
+      .award-certificate-view {
+        background-color: #ffffff;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight);
+        padding: 16px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .certificate-border-frame {
+        width: 100%;
+        max-width: 520px;
+        border: 4px double #8b6508;
+        padding: 18px 22px;
+        background: #fdfcf7;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .certificate-header-label {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #8b6508;
+        margin-bottom: 4px;
+      }
+
+      .certificate-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #1a1a1a;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+        border-bottom: 1px solid #d4af37;
+        padding-bottom: 6px;
+        width: 100%;
+      }
+
+      .certificate-recipient {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--w95-navy-dark);
+        font-family: Georgia, serif;
+        border-bottom: 1px dotted #888888;
+        padding: 2px 20px;
+        margin-bottom: 8px;
+      }
+
+      .certificate-body-desc {
+        font-size: 11px;
+        line-height: 1.5;
+        color: #333333;
+        margin: 6px 0 12px 0;
+      }
+
+      .certificate-seal-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 100%;
+        margin-top: 14px;
+        padding-top: 10px;
+        border-top: 1px solid #e0d8b0;
+      }
+
+      .certificate-signature {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 9px;
+        color: #555555;
+      }
+
+      .certificate-sig-line {
+        width: 110px;
+        border-bottom: 1px solid #000000;
+        margin-bottom: 3px;
+      }
+
+      .certificate-gold-seal {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #ffe066 30%, #d4af37 80%, #997a15 100%);
+        border: 2px dashed #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+      }
+
+      /* Shutdown modal & safe screen */
+      .shutdown-modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 20000;
+      }
+
+      .shutdown-dialog {
+        width: 320px;
+        background-color: var(--w95-surface);
+      }
+
+      .shutdown-dialog-content {
+        padding: 16px;
+        display: flex;
+        gap: 12px;
+        font-size: 11px;
+      }
+
+      .shutdown-safe-screen {
+        position: fixed;
+        inset: 0;
+        background-color: #000000;
+        color: #ff9900;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        z-index: 30000;
+        text-align: center;
+        font-family: var(--w95-font-mono);
+      }
+
+      .shutdown-safe-text {
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+
+      .reboot-btn {
+        background-color: #222222;
+        color: #ff9900;
+        border: 2px solid #ff9900;
+        padding: 8px 16px;
+        font-size: 13px;
+        cursor: pointer;
+        font-family: var(--w95-font-mono);
+      }
+
+      /* Mail / Contact App */
+      /* Mail / Contact App (Retro Windows 95 / Outlook Express) */
+      .mail-retro-window {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background-color: var(--w95-surface);
+      }
+
+      .mail-retro-menubar {
+        display: flex;
+        gap: 12px;
+        padding: 2px 6px;
+        font-size: 11px;
+        border-bottom: 1px solid var(--w95-shadow-light);
+        box-shadow: 0 1px 0 #ffffff;
+      }
+
+      .mail-retro-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 6px;
+        border-bottom: 1px solid var(--w95-shadow-light);
+        box-shadow: 0 1px 0 #ffffff;
+      }
+
+      .mail-toolbar-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        font-size: 11px;
+      }
+
+      .mail-toolbar-icon {
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .mail-retro-divider {
+        width: 2px;
+        height: 18px;
+        margin: 0 4px;
+        border-left: 1px solid var(--w95-shadow-light);
+        border-right: 1px solid var(--w95-highlight);
+      }
+
+      .mail-retro-canvas {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+        background-color: var(--w95-surface);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mail-compose-form {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        height: 100%;
+      }
+
+      .mail-compose-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .mail-field-btn {
+        min-width: 65px;
+        height: 22px;
+        font-size: 11px;
+        padding: 1px 6px;
+      }
+
+      .mail-field-label {
+        min-width: 90px;
+        font-size: 11px;
+        font-weight: bold;
+        color: #000000;
+        text-align: right;
+        padding-right: 4px;
+      }
+
+      .mail-sunken-field {
+        flex: 1;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        padding: 0 6px;
+        background-color: #ffffff;
+        font-size: 11px;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight),
+          inset 2px 2px 0px var(--w95-shadow-light);
+      }
+
+      .mail-sunken-field.readonly-field {
+        background-color: #f0f0f0;
+        color: #222222;
+      }
+
+      .mail-sunken-input {
+        flex: 1;
+        height: 22px;
+        padding: 0 6px;
+        background-color: #ffffff;
+        border: none;
+        font-size: 11px;
+        font-family: var(--w95-font);
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight),
+          inset 2px 2px 0px var(--w95-shadow-light);
+      }
+
+      .mail-sunken-input:focus {
+        outline: 1px dotted #000080;
+        outline-offset: -2px;
+      }
+
+      .mail-textarea-wrapper {
+        flex: 1;
+        min-height: 170px;
+        display: flex;
+        margin-top: 4px;
+      }
+
+      .mail-sunken-textarea {
+        flex: 1;
+        width: 100%;
+        padding: 6px;
+        background-color: #ffffff;
+        border: none;
+        font-size: 12px;
+        font-family: var(--w95-font);
+        line-height: 1.45;
+        resize: vertical;
+        box-shadow: 
+          inset 1px 1px 0px var(--w95-shadow-dark),
+          inset -1px -1px 0px var(--w95-highlight),
+          inset 2px 2px 0px var(--w95-shadow-light);
+      }
+
+      .mail-sunken-textarea:focus {
+        outline: 1px dotted #000080;
+        outline-offset: -2px;
+      }
+
+      .mail-error-banner {
+        padding: 4px 8px;
+        background-color: #ffffcc;
+        border: 1px solid #cc9900;
+        color: #990000;
+        font-size: 11px;
+      }
+
+      .mail-action-footer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 6px;
+      }
+
+      .mail-submit-btn {
+        font-weight: bold;
+        min-width: 130px;
+      }
+
+      .mail-dialog-box {
+        max-width: 440px;
+        margin: 40px auto;
+        padding: 18px 20px;
+        background-color: var(--w95-surface);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mail-dialog-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="desktop-root"></div>
+
+    <script>
+      /* --- RESUME DATA --- */
+      const PROFILE = {
+        name: 'Argee Boy Paquibot',
+        role: 'Innovative Full-Stack Developer | Hackathon Champion | Student Leader',
+        location: 'Lapu-Lapu City, Cebu Province',
+        phone: '09333211652',
+        email: 'argeepaquibotprof@gmail.com',
+        linkedin: 'linkedin.com/in/argee-paquibot',
+        linkedinUrl: 'https://linkedin.com/in/argee-paquibot',
+        github: 'github.com/Disargee18',
+        githubUrl: 'https://github.com/Disargee18',
+        summary:
+          'Innovative aspiring Full-Stack Developer and proven student leader, specializing in building secure web applications, high-performance user interfaces, and decentralized digital solutions. Experienced in architecting robust database schemas, smart contracts, real-time data synchronizations, and responsive frontends using React, Next.js, Tailwind CSS, and Supabase. Proven to leverage technical excellence and exceptional communication skills to deliver immediate value within an engineering team.'
+      };
+
+      const EDUCATION = {
+        degree: 'BS Information Technology',
+        period: '2023 - Present',
+        institution: 'University of Cebu Lapu-Lapu and Mandaue',
+        gwa: '1.3',
+        honors: ["Dean's Lister", 'Student Leader / SBO'],
+        description:
+          'Pursuing Bachelor of Science in Information Technology with consistent top academic standing (GWA 1.3), active student body leadership, and champion representation in regional and national hackathons.'
+      };
+
+      const SKILL_CATEGORIES = [
+        {
+          name: 'Frontend Development',
+          icon: '🖥️',
+          skills: [
+            { name: 'React', level: 95 },
+            { name: 'Next.js', level: 92 },
+            { name: 'JavaScript (ES6+)', level: 95 },
+            { name: 'HTML5 & CSS3', level: 98 },
+            { name: 'Tailwind CSS', level: 92 },
+            { name: 'Framer Motion', level: 85 },
+            { name: 'State Management', level: 90 },
+          ],
+        },
+        {
+          name: 'Backend & Database',
+          icon: '🗄️',
+          skills: [
+            { name: 'Node.js', level: 90 },
+            { name: 'Express', level: 88 },
+            { name: 'Supabase', level: 94 },
+            { name: 'PostgreSQL', level: 90 },
+            { name: 'REST APIs', level: 95 },
+            { name: 'Row-Level Security (RLS)', level: 92 },
+          ],
+        },
+        {
+          name: 'Blockchain & Web3',
+          icon: '⛓️',
+          skills: [
+            { name: 'CashScript', level: 88 },
+            { name: 'Smart Contracts', level: 86 },
+            { name: 'Bitcoin Cash', level: 85 },
+            { name: 'CashTokens Integration', level: 88 },
+          ],
+        },
+        {
+          name: 'DevOps & Networking',
+          icon: '⚙️',
+          skills: [
+            { name: 'Git & GitHub', level: 92 },
+            { name: 'Linux Fundamentals', level: 82 },
+            { name: 'Cisco DevNet Environment', level: 80 },
+            { name: 'REST API Integrations', level: 92 },
+          ],
+        },
+        {
+          name: 'Leadership & Soft Skills',
+          icon: '🤝',
+          skills: [
+            { name: 'Project Leadership', level: 95 },
+            { name: 'Technical Pitching (Hustler Award)', level: 96 },
+            { name: 'Rapid Prototyping', level: 94 },
+            { name: 'Public Speaking', level: 90 },
+          ],
+        },
+      ];
+
+      const PROJECTS = [
+        {
+          id: 'seekr',
+          title: 'Seekr',
+          award: '12th UC ICT Congress Hackathon — 2nd Place Winner',
+          awardType: 'silver',
+          category: 'Code Intelligence & Repository Indexing',
+          date: '01/2026',
+          github: 'https://github.com/Disargee18',
+          summary: 'Intelligent code repository indexing and discovery platform that enables developers to search, analyze, and trace complex source code dependencies across multi-file codebases.',
+          bullets: [
+            'Built an intelligent code repository indexing and discovery platform that enables developers to search, analyze, and trace complex source code dependencies across multi-file codebases.',
+            'Engineered fast client-side state filtering and optimized frontend rendering to display search results with instant visual feedback and syntax highlighting.',
+            'Designed an intuitive UI/UX tailored for developer navigation, ensuring seamless inspection of repository file structures and function calls.',
+          ],
+          tech: ['React', 'Node.js', 'PostgreSQL', 'Redis', 'Syntax Highlighting', 'REST API'],
+          icon: '🔍',
+        },
+        {
+          id: 'restart',
+          title: 'ReStart - Blockchain Credentials',
+          award: 'Paytaca Cashscript 3.0 Hackathon — 1st Place Champion',
+          awardType: 'gold',
+          category: 'Decentralized Milestone Verification on Bitcoin Cash',
+          date: '02/2026',
+          github: 'https://github.com/Disargee18',
+          summary: 'Decentralized credential verification platform that writes verified rehabilitation milestones permanently onto the Bitcoin Cash blockchain using CashScript smart contracts.',
+          bullets: [
+            'Developed a decentralized credential verification platform that writes verified rehabilitation milestones permanently onto the Bitcoin Cash blockchain using CashScript smart contracts.',
+            'Engineered tamper-proof, publicly accessible credential links that allow instant third-party verification directly against the blockchain without middleman dependencies or login barriers.',
+            'Integrated CashTokens and CashScript contracts within a full-stack Next.js and Supabase application to ensure reliable transaction signing and immutable data storage.',
+          ],
+          tech: ['CashScript', 'Bitcoin Cash', 'CashTokens', 'Next.js', 'Supabase', 'Smart Contracts'],
+          icon: '🪙',
+        },
+        {
+          id: 'musika-ai',
+          title: 'Musika AI',
+          award: 'Full-Stack AI Music Streaming Platform',
+          awardType: 'special',
+          category: 'AI Sentiment-Driven Music Streaming with MCP',
+          date: '2025 - 2026',
+          github: 'https://github.com/Disargee18',
+          summary: 'Spotify-inspired streaming application featuring an AI-assisted curation engine that automatically generates dynamic playlists based on user sentiment and mood inputs.',
+          bullets: [
+            'Architected a Spotify-inspired streaming application featuring an AI-assisted curation engine that automatically generates dynamic playlists based on user sentiment and mood inputs.',
+            'Implemented Model Context Protocol (MCP) integrations to orchestrate context-aware chatbot interactions directly within the music player interface.',
+            'Secured user profile data and playlist records using Supabase Authentication alongside granular Row-Level Security (RLS) database policies.',
+          ],
+          tech: ['Next.js', 'Supabase Auth', 'Row-Level Security', 'MCP', 'OpenAI', 'Tailwind CSS'],
+          icon: '🎵',
+        },
+        {
+          id: 'psits-voting',
+          title: 'PSITS Voting System',
+          award: 'Departmental Real-Time Election Web App',
+          awardType: 'special',
+          category: 'High-Concurrency Real-Time E-Voting',
+          date: '2025 - 2026',
+          github: 'https://github.com/Disargee18',
+          summary: 'Departmental election platform leveraging React and Supabase for real-time ballot casting and vote tracking with strict election integrity.',
+          bullets: [
+            'Spearheaded the development of a departmental election platform leveraging React and Supabase for real-time ballot casting and vote tracking.',
+            'Optimized client-side state management and database subscriptions to stream low-latency live election tallies and visual percentage updates.',
+            'Ensured strict election integrity by enforcing unique voter authentication tokens and database-level constraints to eliminate duplicate voting.',
+          ],
+          tech: ['React', 'Supabase Realtime', 'WebSockets', 'PostgreSQL Constraints', 'State Management'],
+          icon: '🗳️',
+        },
+      ];
+
+      const ACHIEVEMENTS = [
+        {
+          id: 'restart-1st',
+          title: '1st Place Champion',
+          project: 'ReStart - Blockchain Rehabilitation Credentials',
+          competition: 'Paytaca Cashscript 3.0 Hackathon',
+          date: 'February 2026',
+          rank: '1st',
+          badge: 'CHAMPION',
+          icon: '🥇',
+          description: 'Grand champion out of competing teams nationwide. Built a production-grade decentralized credential verification platform on Bitcoin Cash with CashScript smart contracts and CashTokens.',
+          highlights: [
+            'CashScript smart contract execution on Bitcoin Cash',
+            'Tamper-proof public credential verification without intermediaries',
+            'Flawless live technical demonstration and pitching',
+          ],
+        },
+        {
+          id: 'uclm-hackathon-champ',
+          title: 'Hackathon Champion',
+          project: 'Campus Innovation Initiative',
+          competition: 'UCLM Hackathon Competition',
+          date: 'January 2026',
+          rank: 'Champion',
+          badge: 'GRAND WINNER',
+          icon: '🏆',
+          description: 'Awarded overall Hackathon Champion at University of Cebu Lapu-Lapu and Mandaue for outstanding technical architecture, rapid delivery, and problem-solving excellence under tight deadlines.',
+          highlights: [
+            'Recognized for rapid prototyping under extreme time constraints',
+            'Robust full-stack architecture with production-level security',
+            'Unanimous judges vote for technical execution',
+          ],
+        },
+        {
+          id: 'uclm-best-pitcher',
+          title: 'Best Pitcher (Hustler Award)',
+          project: 'Individual Recognition',
+          competition: 'UCLM Hackathon Competition',
+          date: 'January 2026',
+          rank: 'Special Award',
+          badge: 'BEST PITCH',
+          icon: '🎤',
+          description: 'Conferred the prestigious Hustler Award for delivering the most articulate, compelling, and high-impact technical pitch and live demonstration.',
+          highlights: [
+            'Articulated complex technical concepts into clear business value',
+            'Flawless live product walkthrough under rigorous judge Q&A',
+            'Distinguished communication and leadership on stage',
+          ],
+        },
+        {
+          id: 'seekr-2nd',
+          title: '2nd Place Winner',
+          project: 'Seekr - Intelligent Code Discovery',
+          competition: '12th UC ICT Congress Hackathon',
+          date: 'January 2026',
+          rank: '2nd',
+          badge: '2ND PLACE',
+          icon: '🥈',
+          description: 'Awarded 2nd Place in the 12th UC ICT Congress Hackathon for creating an intelligent code repository indexing and dependency visualization platform.',
+          highlights: [
+            'Multi-file codebase dependency tracking and indexing',
+            'High-performance client-side state filtering with syntax highlighting',
+            'Developer-first UX applauded by the evaluation panel',
+          ],
+        },
+        {
+          id: 'psite-3rd',
+          title: '3rd Place Winner',
+          project: 'Lightning Pitch Competition',
+          competition: 'PSITE ICT Congress',
+          date: 'January 2026',
+          rank: '3rd',
+          badge: '3RD PLACE',
+          icon: '🥉',
+          description: 'Won 3rd place in the high-stakes PSITE ICT Congress Lightning Pitch, competing against regional delegates presenting real-time election software architecture.',
+          highlights: [
+            'High-speed 3-minute technical pitch and value proposition',
+            'Showcased real-time WebSocket state management and election integrity',
+            'Recognized by Philippine Society of Information Technology Educators (PSITE)',
+          ],
+        },
+      ];
+
+      /* --- SOUND SYNTHESIZER --- */
+      class SoundSystem {
+        constructor() {
+          this.ctx = null;
+          this.muted = false;
+        }
+        init() {
+          if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
+            const AC = window.AudioContext || window.webkitAudioContext;
+            this.ctx = new AC();
+          }
+          if (this.ctx && this.ctx.state === 'suspended') {
+            this.ctx.resume();
+          }
+        }
+        toggleMute() {
+          this.muted = !this.muted;
+          return this.muted;
+        }
+        playStartup() {
+          if (this.muted) return;
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          const notes = [
+            { freq: 155.56, start: 0.0, dur: 2.2, gain: 0.2 },
+            { freq: 233.08, start: 0.1, dur: 2.4, gain: 0.22 },
+            { freq: 311.13, start: 0.25, dur: 2.6, gain: 0.25 },
+            { freq: 392.00, start: 0.45, dur: 2.7, gain: 0.25 },
+            { freq: 466.16, start: 0.65, dur: 3.0, gain: 0.22 },
+            { freq: 622.25, start: 0.85, dur: 3.2, gain: 0.2 },
+            { freq: 698.46, start: 1.1, dur: 3.5, gain: 0.18 },
+            { freq: 932.33, start: 1.4, dur: 4.0, gain: 0.15 },
+          ];
+          notes.forEach((n) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(n.freq, now + n.start);
+            gain.gain.setValueAtTime(0.0001, now + n.start);
+            gain.gain.exponentialRampToValueAtTime(n.gain, now + n.start + 0.15);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + n.start + n.dur);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now + n.start);
+            osc.stop(now + n.start + n.dur);
+          });
+        }
+        playClick() {
+          if (this.muted) return;
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(800, now);
+          osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.04);
+        }
+        playDing() {
+          if (this.muted) return;
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(659.25, now);
+          osc.frequency.setValueAtTime(880, now + 0.08);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.4);
+        }
+      }
+      const sounds = new SoundSystem();
+
+      /* --- STATE & APPLICATION LOGIC --- */
+      const state = {
+        windows: {
+          about: {
+            id: 'about',
+            title: 'About Me - Argee Boy Paquibot',
+            icon: '👤',
+            isOpen: true,
+            isMinimized: false,
+            isMaximized: false,
+            zIndex: 10,
+            x: 60,
+            y: 35,
+            w: 660,
+            h: 490,
+            tab: 'profile'
+          },
+          projects: {
+            id: 'projects',
+            title: 'Projects Explorer - Internet Explorer 3.0',
+            icon: '🌐',
+            isOpen: false,
+            isMinimized: false,
+            isMaximized: false,
+            zIndex: 9,
+            x: 100,
+            y: 55,
+            w: 740,
+            h: 510,
+            selectedProject: 'seekr'
+          },
+          achievements: {
+            id: 'achievements',
+            title: 'Achievements & Hackathon Honors',
+            icon: '🏆',
+            isOpen: false,
+            isMinimized: false,
+            isMaximized: false,
+            zIndex: 8,
+            x: 140,
+            y: 75,
+            w: 720,
+            h: 490,
+            filter: 'all',
+            selectedAward: 'restart-1st'
+          },
+          mail: {
+            id: 'mail',
+            title: 'Outlook Express - Send Message to Argee',
+            icon: '✉️',
+            isOpen: false,
+            isMinimized: false,
+            isMaximized: false,
+            zIndex: 7,
+            x: 170,
+            y: 105,
+            w: 700,
+            h: 530,
+            name: '',
+            email: '',
+            message: '',
+            isSubmitting: false,
+            sent: false,
+            error: ''
+          }
+        },
+        activeId: 'about',
+        topZ: 11,
+        startOpen: false,
+        selectedIcon: null,
+        soundStarted: false,
+        showShutdown: false,
+        isShutDown: false
+      };
+
+      function triggerInitialSound() {
+        if (!state.soundStarted) {
+          state.soundStarted = true;
+          sounds.playStartup();
+        }
+      }
+
+      function bringToFront(id) {
+        state.topZ += 1;
+        state.windows[id].zIndex = state.topZ;
+        state.windows[id].isMinimized = false;
+        state.activeId = id;
+        render();
+      }
+
+      function openApp(id) {
+        sounds.playClick();
+        if (id === 'recycle') {
+          sounds.playDing();
+          alert('Recycle Bin is empty. No bugs or deleted features found!');
+          return;
+        }
+        if (!state.windows[id]) return;
+        state.windows[id].isOpen = true;
+        bringToFront(id);
+      }
+
+      function closeApp(id) {
+        sounds.playClick();
+        state.windows[id].isOpen = false;
+        const remaining = Object.values(state.windows).filter(w => w.isOpen && !w.isMinimized);
+        if (remaining.length > 0) {
+          const top = remaining.reduce((a, b) => a.zIndex > b.zIndex ? a : b);
+          state.activeId = top.id;
+        } else {
+          state.activeId = null;
+        }
+        render();
+      }
+
+      function toggleMinimize(id) {
+        sounds.playClick();
+        state.windows[id].isMinimized = !state.windows[id].isMinimized;
+        if (state.windows[id].isMinimized && state.activeId === id) {
+          const remaining = Object.values(state.windows).filter(w => w.isOpen && !w.isMinimized && w.id !== id);
+          if (remaining.length > 0) {
+            const top = remaining.reduce((a, b) => a.zIndex > b.zIndex ? a : b);
+            state.activeId = top.id;
+          } else {
+            state.activeId = null;
+          }
+        } else if (!state.windows[id].isMinimized) {
+          bringToFront(id);
+        }
+        render();
+      }
+
+      function toggleMaximize(id) {
+        sounds.playClick();
+        state.windows[id].isMaximized = !state.windows[id].isMaximized;
+        render();
+      }
+
+      /* --- RENDER FUNCTIONS --- */
+      function renderAboutApp() {
+        const win = state.windows.about;
+        return `
+          <div class="about-app">
+            <div class="win95-tabs-container">
+              <button class="win95-tab ${win.tab === 'profile' ? 'active' : ''}" onclick="setAboutTab('profile')">General Profile</button>
+              <button class="win95-tab ${win.tab === 'skills' ? 'active' : ''}" onclick="setAboutTab('skills')">Technical Skills</button>
+              <button class="win95-tab ${win.tab === 'education' ? 'active' : ''}" onclick="setAboutTab('education')">Education & SBO</button>
+              <button class="win95-tab ${win.tab === 'contact' ? 'active' : ''}" onclick="setAboutTab('contact')">Contact Information</button>
+            </div>
+
+            ${win.tab === 'profile' ? `
+              <div class="about-hero">
+                <div class="about-avatar-frame">
+                  <span class="about-avatar-initials">ABP</span>
+                  <span class="about-avatar-sub">DEV // 95</span>
+                </div>
+                <div class="about-hero-details">
+                  <h2 class="about-name">${PROFILE.name}</h2>
+                  <div class="about-role">${PROFILE.role}</div>
+                  <div class="about-location">📍 ${PROFILE.location}</div>
+                </div>
+              </div>
+
+              <div class="win95-groupbox">
+                <span class="win95-groupbox-legend">Professional Summary</span>
+                <div class="about-summary-box">
+                  ${PROFILE.summary}
+                </div>
+              </div>
+
+              <div class="win95-groupbox">
+                <span class="win95-groupbox-legend">Quick Specs</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                  <div><strong>Core Stack:</strong> React, Next.js, Supabase</div>
+                  <div><strong>Status:</strong> Available for High-Impact Roles</div>
+                  <div><strong>Specialty:</strong> Secure Web Apps & RLS Architecture</div>
+                  <div><strong>Hackathons Won:</strong> 5 Major National/Regional Honors</div>
+                </div>
+              </div>
+            ` : ''}
+
+            ${win.tab === 'skills' ? `
+              <div class="about-skills-grid">
+                ${SKILL_CATEGORIES.map(category => `
+                  <div class="win95-groupbox">
+                    <span class="win95-groupbox-legend">${category.icon} ${category.name}</span>
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                      ${category.skills.map(s => `
+                        <div class="about-skill-item">
+                          <div class="about-skill-header">
+                            <span>${s.name}</span>
+                            <span>${s.level}%</span>
+                          </div>
+                          <div class="about-meter-track">
+                            <div class="about-meter-fill" style="width: ${s.level}%;"></div>
+                          </div>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
+
+            ${win.tab === 'education' ? `
+              <div class="win95-groupbox">
+                <span class="win95-groupbox-legend">🎓 Academic Degree</span>
+                <div class="about-edu-card">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <strong style="font-size: 13px; color: var(--w95-navy-dark);">${EDUCATION.degree}</strong>
+                    <span style="font-size: 11px; color: #555555;">${EDUCATION.period}</span>
+                  </div>
+                  <div style="font-weight: 600;">${EDUCATION.institution}</div>
+                  <div style="margin: 4px 0; color: #333333;">${EDUCATION.description}</div>
+                  <div class="about-edu-badges">
+                    <span class="about-badge">⭐ GWA: ${EDUCATION.gwa}</span>
+                    ${EDUCATION.honors.map(h => `<span class="about-badge">🏅 ${h}</span>`).join('')}
+                  </div>
+                </div>
+              </div>
+
+              <div class="win95-groupbox">
+                <span class="win95-groupbox-legend">🏛️ Leadership & Campus Involvement</span>
+                <div style="background: #ffffff; padding: 8px; line-height: 1.45;">
+                  Active student leader in the Student Body Organization (SBO), organizing collegiate tech initiatives, peer coding mentorship, and representing the university in provincial and national ICT Congress hackathon competitions.
+                </div>
+              </div>
+            ` : ''}
+
+            ${win.tab === 'contact' ? `
+              <div class="win95-groupbox">
+                <span class="win95-groupbox-legend">Direct Transmission Channels</span>
+                <div style="display: flex; flex-direction: column; gap: 10px; padding: 6px;">
+                  <div><strong>Email:</strong> ${PROFILE.email}</div>
+                  <div><strong>Phone:</strong> ${PROFILE.phone}</div>
+                  <div><strong>LinkedIn:</strong> ${PROFILE.linkedin}</div>
+                  <div><strong>GitHub:</strong> ${PROFILE.github}</div>
+
+                  <div class="about-contacts-row">
+                    <button type="button" class="win95-btn" onclick="openApp('mail')">✉️ Send Message / Email</button>
+                    <a href="${PROFILE.linkedinUrl}" target="_blank" rel="noreferrer" class="win95-btn" onclick="sounds.playClick()">🔗 Open LinkedIn</a>
+                    <a href="${PROFILE.githubUrl}" target="_blank" rel="noreferrer" class="win95-btn" onclick="sounds.playClick()">🐙 Open GitHub</a>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }
+
+      function renderProjectsApp() {
+        const win = state.windows.projects;
+        const current = PROJECTS.find(p => p.id === win.selectedProject) || PROJECTS[0];
+        return `
+          <div class="projects-app">
+            <div class="ie-menubar">
+              <span>File</span><span>Edit</span><span>View</span><span>Go</span><span>Favorites</span><span>Help</span>
+            </div>
+            <div class="ie-toolbar">
+              <button class="ie-tool-btn" onclick="cycleProject(-1)" title="Back"><span style="font-size:14px">⬅️</span><span>Back</span></button>
+              <button class="ie-tool-btn" onclick="cycleProject(1)" title="Forward"><span style="font-size:14px">➡️</span><span>Forward</span></button>
+              <button class="ie-tool-btn" onclick="selectProject('${PROJECTS[0].id}')" title="Home"><span style="font-size:14px">🏠</span><span>Home</span></button>
+              <button class="ie-tool-btn" onclick="sounds.playDing()" title="Refresh"><span style="font-size:14px">🔄</span><span>Refresh</span></button>
+              <div style="margin-left:auto; display:flex; align-items:center; gap:4px; font-size:11px; color:#555555">
+                <span>Microsoft Internet Explorer</span><span style="font-size:15px">🌐</span>
+              </div>
+            </div>
+            <div class="ie-address-row">
+              <span style="font-size:11px; font-weight:500">Address</span>
+              <input type="text" readonly class="ie-address-input" value="http://argee-paquibot.dev/projects/${current.id}">
+              <button class="win95-btn" onclick="sounds.playDing()">Go</button>
+            </div>
+            <div class="ie-viewport">
+              <aside class="ie-project-sidebar">
+                <div class="ie-sidebar-header">Technical Projects (${PROJECTS.length})</div>
+                ${PROJECTS.map(p => `
+                  <button class="ie-project-tab-btn ${p.id === current.id ? 'active' : ''}" onclick="selectProject('${p.id}')">
+                    <span>${p.icon}</span>
+                    <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap">${p.title}</span>
+                  </button>
+                `).join('')}
+              </aside>
+              <div class="ie-project-display">
+                <div class="project-award-banner ${current.awardType}">
+                  <span>🏆</span><span>${current.award}</span>
+                </div>
+                <div class="project-title-row">
+                  <div>
+                    <h2 class="project-main-title">${current.title}</h2>
+                    <div class="project-category">${current.category}</div>
+                  </div>
+                  <span style="font-size:11px; color:#666666">${current.date}</span>
+                </div>
+                <div style="background:#f9f9f9; padding:10px; border-left:3px solid var(--w95-navy-dark); line-height:1.5">
+                  ${current.summary}
+                </div>
+                <div class="win95-groupbox">
+                  <span class="win95-groupbox-legend">Architecture & Technical Execution</span>
+                  <ul class="project-bullets-list">
+                    ${current.bullets.map(b => `<li>${b}</li>`).join('')}
+                  </ul>
+                </div>
+                <div class="win95-groupbox">
+                  <span class="win95-groupbox-legend">Technologies & Libraries</span>
+                  <div class="project-tech-chips">
+                    ${current.tech.map(t => `<span class="project-tech-chip">${t}</span>`).join('')}
+                  </div>
+                </div>
+                <div class="project-action-buttons">
+                  <a href="${current.github}" target="_blank" rel="noreferrer" class="win95-btn" onclick="sounds.playClick()">🐙 Source Code / Repository</a>
+                  <button class="win95-btn" onclick="sounds.playDing(); alert('Launched inspection protocol for ${current.title}')">🚀 Launch Demo System</button>
+                </div>
+              </div>
+            </div>
+            <div class="win95-statusbar">
+              <div class="win95-status-field">Document: Done (Status 200 OK)</div>
+              <div class="win95-status-field fixed">Internet Zone</div>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderAchievementsApp() {
+        const win = state.windows.achievements;
+        const filtered = ACHIEVEMENTS.filter(a => {
+          if (win.filter === 'champions') return a.rank.includes('1st') || a.rank.includes('Champion');
+          if (win.filter === 'pitch') return a.title.includes('Pitch') || a.badge.includes('PITCH');
+          return true;
+        });
+        const current = ACHIEVEMENTS.find(a => a.id === win.selectedAward) || ACHIEVEMENTS[0];
+        return `
+          <div class="awards-app">
+            <div class="awards-header-bar">
+              <div style="display:flex; align-items:center; gap:6px">
+                <span style="font-size:16px">🏆</span><strong>Hall of Fame & Hackathon Honors</strong>
+              </div>
+              <div style="display:flex; gap:4px">
+                <button class="win95-btn ${win.filter === 'all' ? 'active' : ''}" onclick="setAwardsFilter('all')">All Honors (${ACHIEVEMENTS.length})</button>
+                <button class="win95-btn ${win.filter === 'champions' ? 'active' : ''}" onclick="setAwardsFilter('champions')">🥇 Champions Only</button>
+                <button class="win95-btn ${win.filter === 'pitch' ? 'active' : ''}" onclick="setAwardsFilter('pitch')">🎤 Pitch Awards</button>
+              </div>
+            </div>
+            <div class="awards-layout">
+              <div class="awards-list-panel">
+                ${filtered.map(a => `
+                  <button class="award-item-btn ${a.id === current.id ? 'selected' : ''}" onclick="selectAward('${a.id}')">
+                    <span style="font-size:20px">${a.icon}</span>
+                    <div style="display:flex; flex-direction:column; gap:1px">
+                      <span style="font-size:11px; font-weight:bold">${a.title}</span>
+                      <span style="font-size:9px; opacity:0.85">${a.competition}</span>
+                    </div>
+                  </button>
+                `).join('')}
+              </div>
+              <div class="award-certificate-view">
+                <div class="certificate-border-frame">
+                  <span class="certificate-header-label">Official Certificate of Distinction</span>
+                  <h1 class="certificate-title">${current.title}</h1>
+                  <p style="font-size:10px; font-style:italic; color:#666666; margin:4px 0">This honor is proudly awarded to</p>
+                  <div class="certificate-recipient">${PROFILE.name}</div>
+                  <div style="font-size:11px; font-weight:bold; color:#444444; margin:4px 0">
+                    For exceptional accomplishment in: <span style="color:var(--w95-navy-dark)">${current.project}</span>
+                  </div>
+                  <div style="font-size:11px; color:#555555">
+                    Presented at: <strong>${current.competition}</strong> (${current.date})
+                  </div>
+                  <p class="certificate-body-desc">${current.description}</p>
+                  <div class="win95-groupbox" style="width:100%; text-align:left; background:#ffffff">
+                    <span class="win95-groupbox-legend">Judges Evaluation & Execution Highlights</span>
+                    <ul style="padding-left:18px; font-size:10px; display:flex; flex-direction:column; gap:3px">
+                      ${current.highlights.map(h => `<li>${h}</li>`).join('')}
+                    </ul>
+                  </div>
+                  <div class="certificate-seal-row">
+                    <div class="certificate-signature">
+                      <div class="certificate-sig-line"></div>
+                      <span>Event Committee / Hackathon Jury</span>
+                    </div>
+                    <div class="certificate-gold-seal">⭐</div>
+                    <div class="certificate-signature">
+                      <div class="certificate-sig-line"></div>
+                      <span>Verified Credential Record</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="win95-statusbar">
+              <div class="win95-status-field">Selected: ${current.title} — ${current.competition}</div>
+              <div class="win95-status-field fixed">Rank: ${current.badge}</div>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderMailApp() {
+        const win = state.windows.mail;
+        return `
+          <div class="mail-retro-window">
+            <div class="mail-retro-menubar">
+              <span>File</span><span>Edit</span><span>View</span><span>Insert</span><span>Format</span><span>Tools</span><span>Compose</span><span>Help</span>
+            </div>
+            <div class="mail-retro-toolbar">
+              <button type="button" class="win95-btn mail-toolbar-btn" onclick="submitMailForm(event)" ${win.isSubmitting ? 'disabled' : ''} title="Send message now">
+                <span class="mail-toolbar-icon">${win.isSubmitting ? '⏳' : '📤'}</span><span>${win.isSubmitting ? 'Sending...' : 'Send'}</span>
+              </button>
+              <button type="button" class="win95-btn mail-toolbar-btn" onclick="resetMailForm()" ${win.isSubmitting ? 'disabled' : ''} title="Clear message">
+                <span class="mail-toolbar-icon">🗑️</span><span>Clear</span>
+              </button>
+              <div class="mail-retro-divider"></div>
+              <button type="button" class="win95-btn mail-toolbar-btn" onclick="copyEmailAddr()" title="Copy email address">
+                <span class="mail-toolbar-icon">📋</span><span>Copy Address</span>
+              </button>
+              <div style="margin-left:auto; display:flex; align-items:center; gap:6px; font-size:11px; color:#444444">
+                <span>Direct Inbox:</span>
+                <strong style="color:var(--w95-navy-dark)">${PROFILE.email}</strong>
+              </div>
+            </div>
+
+            <div class="mail-retro-canvas">
+              ${win.sent ? `
+                <div class="mail-dialog-box win95-raised">
+                  <div class="mail-dialog-header">
+                    <span style="font-size:30px">📬</span>
+                    <div style="display:flex; flex-direction:column; gap:4px">
+                      <h3 style="font-size:13px; font-weight:bold; color:var(--w95-navy-dark)">Message Sent Successfully!</h3>
+                      <p style="font-size:11px; line-height:1.45; color:#000000">
+                        Your transmission was automatically delivered directly to <strong>${PROFILE.email}</strong>.
+                      </p>
+                      <p style="font-size:10px; color:#555555">
+                        (No mail client or mailto link was opened).
+                      </p>
+                    </div>
+                  </div>
+                  <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:16px">
+                    <button type="button" class="win95-btn" onclick="resetMailForm()" style="min-width:95px">Send Another</button>
+                  </div>
+                </div>
+              ` : `
+                <form class="mail-compose-form" onsubmit="submitMailForm(event)">
+                  <div class="mail-compose-row">
+                    <button type="button" class="win95-btn mail-field-btn" onclick="sounds.playDing()">To...</button>
+                    <div class="mail-sunken-field readonly-field">
+                      Argee Boy Paquibot &lt;${PROFILE.email}&gt;
+                    </div>
+                  </div>
+
+                  <div class="mail-compose-row">
+                    <label class="mail-field-label" for="std-name">Your Name:</label>
+                    <input id="std-name" type="text" class="mail-sunken-input" placeholder="Enter your full name" value="${win.name}" oninput="state.windows.mail.name=this.value" ${win.isSubmitting ? 'disabled' : ''} required>
+                  </div>
+
+                  <div class="mail-compose-row">
+                    <label class="mail-field-label" for="std-email">Email Address:</label>
+                    <input id="std-email" type="email" class="mail-sunken-input" placeholder="your.email@example.com" value="${win.email}" oninput="state.windows.mail.email=this.value" ${win.isSubmitting ? 'disabled' : ''} required>
+                  </div>
+
+                  ${win.error ? `<div class="mail-error-banner">⚠️ ${win.error}</div>` : ''}
+
+                  <div class="mail-textarea-wrapper">
+                    <textarea id="std-message" class="mail-sunken-textarea" placeholder="Say Hello..." oninput="state.windows.mail.message=this.value" ${win.isSubmitting ? 'disabled' : ''} required>${win.message}</textarea>
+                  </div>
+
+                  <div class="mail-action-footer">
+                    <button type="submit" class="win95-btn mail-submit-btn" ${win.isSubmitting ? 'disabled' : ''}>
+                      <span>${win.isSubmitting ? '⏳ Transmitting Data...' : '✉ Send Message'}</span>
+                    </button>
+                    <button type="button" class="win95-btn" onclick="resetMailForm()" ${win.isSubmitting ? 'disabled' : ''}>
+                      Clear
+                    </button>
+                  </div>
+                </form>
+              `}
+            </div>
+
+            <div class="win95-statusbar">
+              <div class="win95-status-field">
+                ${win.isSubmitting ? 'Transmitting message to remote SMTP gateway...' : `Status: Connected to ${PROFILE.email}`}
+              </div>
+              <div class="win95-status-field fixed">${win.isSubmitting ? 'Sending...' : 'Auto-Dispatch'}</div>
+            </div>
+          </div>
+        `;
+      }
+
+      async function submitMailForm(e) {
+        if (e) e.preventDefault();
+        const win = state.windows.mail;
+        if (win.isSubmitting) return;
+
+        sounds.playClick();
+        if (!win.name.trim() || !win.email.trim() || !win.message.trim()) {
+          sounds.playDing();
+          win.error = 'Please enter your Name, Email Address, and Message.';
+          render();
+          return;
+        }
+
+        win.isSubmitting = true;
+        win.error = '';
+        render();
+
+        try {
+          const response = await fetch(`https://formsubmit.co/ajax/${PROFILE.email}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              name: win.name.trim(),
+              email: win.email.trim(),
+              message: win.message.trim(),
+              _subject: `Portfolio Message from ${win.name.trim()}`,
+              _captcha: 'false',
+              _template: 'table'
+            })
+          });
+
+          const result = await response.json();
+          if (response.ok && (result.success === 'true' || result.success === true)) {
+            sounds.playDing();
+            win.sent = true;
+            win.name = '';
+            win.email = '';
+            win.message = '';
+          } else {
+            throw new Error(result.message || 'Transmission failed');
+          }
+        } catch (err) {
+          sounds.playDing();
+          win.error = 'Transmission failed. Please check your internet connection and try again.';
+        } finally {
+          win.isSubmitting = false;
+          render();
+        }
+      }
+
+      function resetMailForm() {
+        const win = state.windows.mail;
+        if (win.isSubmitting) return;
+        sounds.playClick();
+        win.name = '';
+        win.email = '';
+        win.message = '';
+        win.sent = false;
+        win.error = '';
+        render();
+      }
+
+      function copyEmailAddr() {
+        sounds.playClick();
+        navigator.clipboard?.writeText(PROFILE.email);
+        alert(`Copied ${PROFILE.email} to clipboard!`);
+      }
+
+      function render() {
+        const root = document.getElementById('desktop-root');
+        if (state.isShutDown) {
+          root.innerHTML = `
+            <div class="shutdown-safe-screen">
+              <div style="font-size: 40px">💾</div>
+              <div class="shutdown-safe-text">It's now safe to turn off your computer.</div>
+              <button class="reboot-btn" onclick="restartSystem()">🔄 Restart Portfolio OS</button>
+            </div>
+          `;
+          return;
+        }
+
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+        const timeStr = `${hours}:${minutes} ${ampm}`;
+
+        const icons = [
+          { id: 'about', label: 'About Me', icon: '👤', hint: 'View Argee Boy Paquibot Profile & Skills' },
+          { id: 'projects', label: 'Projects', icon: '🌐', hint: 'Browse Hackathon & Engineering Projects' },
+          { id: 'achievements', label: 'Achievements', icon: '🏆', hint: 'View Hackathon Trophies & Awards' },
+          { id: 'mail', label: 'Send Message', icon: '✉️', hint: 'Send a message or email directly to Argee' },
+          { id: 'recycle', label: 'Recycle Bin', icon: '🗑️', hint: 'Empty' }
+        ];
+
+        let html = `
+          <div class="w95-desktop" onclick="handleDesktopClick(event)">
+            <!-- Icons Grid -->
+            <div class="w95-desktop-icons">
+              ${icons.map(icon => `
+                <div class="w95-desktop-icon ${state.selectedIcon === icon.id ? 'selected' : ''}"
+                     onclick="selectIcon(event, '${icon.id}')"
+                     ondblclick="openApp('${icon.id}')"
+                     title="${icon.hint}">
+                  <div class="w95-icon-graphic">${icon.icon}</div>
+                  <div class="w95-icon-label">${icon.label}</div>
+                </div>
+              `).join('')}
+            </div>
+
+            <!-- Windows Container -->
+            <div class="w95-windows-container">
+        `;
+
+        Object.values(state.windows).forEach(win => {
+          if (!win.isOpen || win.isMinimized) return;
+          const isActive = win.id === state.activeId;
+          let bodyHtml = '';
+          if (win.id === 'about') bodyHtml = renderAboutApp();
+          if (win.id === 'projects') bodyHtml = renderProjectsApp();
+          if (win.id === 'achievements') bodyHtml = renderAchievementsApp();
+          if (win.id === 'mail') bodyHtml = renderMailApp();
+
+          html += `
+            <div class="w95-window ${win.isMaximized ? 'maximized' : ''}"
+                 id="win-${win.id}"
+                 style="z-index: ${win.zIndex}; left: ${win.isMaximized ? 0 : win.x + 'px'}; top: ${win.isMaximized ? 0 : win.y + 'px'}; width: ${win.isMaximized ? '100%' : win.w + 'px'}; height: ${win.isMaximized ? '100%' : win.h + 'px'}"
+                 onmousedown="bringToFront('${win.id}')">
+              
+              <div class="win95-titlebar ${isActive ? '' : 'inactive'}"
+                   onmousedown="startDrag(event, '${win.id}')"
+                   ondblclick="toggleMaximize('${win.id}')">
+                <div class="win95-title-left">
+                  <span style="font-size:13px">${win.icon}</span>
+                  <span>${win.title}</span>
+                </div>
+                <div class="win95-title-controls">
+                  <button class="win95-title-btn" onclick="event.stopPropagation(); toggleMinimize('${win.id}')" title="Minimize">_</button>
+                  <button class="win95-title-btn" onclick="event.stopPropagation(); toggleMaximize('${win.id}')" title="Maximize">${win.isMaximized ? '❐' : '□'}</button>
+                  <button class="win95-title-btn" onclick="event.stopPropagation(); closeApp('${win.id}')" title="Close">✕</button>
+                </div>
+              </div>
+
+              <div class="w95-window-body">
+                <div class="w95-window-inner-content">
+                  ${bodyHtml}
+                </div>
+              </div>
+
+              ${!win.isMaximized ? `<div class="w95-resize-handle" onmousedown="startResize(event, '${win.id}')"></div>` : ''}
+            </div>
+          `;
+        });
+
+        html += `
+            </div>
+
+            <!-- Start Menu -->
+            ${state.startOpen ? `
+              <div class="w95-start-menu" onclick="event.stopPropagation()">
+                <div class="w95-start-sidebar">
+                  <div class="w95-start-sidebar-text">Windows<span>95</span></div>
+                </div>
+                <div class="w95-start-items">
+                  <button class="w95-start-item" onclick="openApp('about'); state.startOpen=false; render()">
+                    <span style="font-size:18px; width:22px; text-align:center">👤</span><span>About Me</span>
+                  </button>
+                  <button class="w95-start-item" onclick="openApp('projects'); state.startOpen=false; render()">
+                    <span style="font-size:18px; width:22px; text-align:center">🌐</span><span>Projects Explorer</span>
+                  </button>
+                  <button class="w95-start-item" onclick="openApp('achievements'); state.startOpen=false; render()">
+                    <span style="font-size:18px; width:22px; text-align:center">🏆</span><span>Achievements</span>
+                  </button>
+                  <button class="w95-start-item" onclick="openApp('mail'); state.startOpen=false; render()">
+                    <span style="font-size:18px; width:22px; text-align:center">✉️</span><span>Send Message / Mail</span>
+                  </button>
+                  <div class="w95-start-divider"></div>
+                  <a href="${PROFILE.linkedinUrl}" target="_blank" rel="noreferrer" class="w95-start-item" onclick="sounds.playClick()">
+                    <span style="font-size:18px; width:22px; text-align:center">💼</span><span>LinkedIn Profile</span>
+                  </a>
+                  <a href="${PROFILE.githubUrl}" target="_blank" rel="noreferrer" class="w95-start-item" onclick="sounds.playClick()">
+                    <span style="font-size:18px; width:22px; text-align:center">🐙</span><span>GitHub Profile</span>
+                  </a>
+                  <a href="mailto:${PROFILE.email}" class="w95-start-item" onclick="sounds.playClick()">
+                    <span style="font-size:18px; width:22px; text-align:center">✉️</span><span>Send Email</span>
+                  </a>
+                  <div class="w95-start-divider"></div>
+                  <button class="w95-start-item" onclick="state.showShutdown=true; state.startOpen=false; render()">
+                    <span style="font-size:18px; width:22px; text-align:center">🖥️</span><span>Shut Down...</span>
+                  </button>
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- Taskbar -->
+            <footer class="w95-taskbar">
+              <button class="w95-start-btn ${state.startOpen ? 'active' : ''}" onclick="toggleStart(event)">
+                <div class="w95-logo-quad">
+                  <div class="w95-logo-red"></div>
+                  <div class="w95-logo-green"></div>
+                  <div class="w95-logo-blue"></div>
+                  <div class="w95-logo-yellow"></div>
+                </div>
+                <span>Start</span>
+              </button>
+
+              <div class="w95-taskbar-tasks">
+                ${Object.values(state.windows).filter(w => w.isOpen).map(w => {
+                  const isCur = w.id === state.activeId && !w.isMinimized;
+                  return `
+                    <button class="w95-taskbar-item ${isCur ? 'active' : ''}" onclick="handleTaskbarClick('${w.id}')">
+                      <span>${w.icon}</span>
+                      <span>${w.title}</span>
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+
+              <div class="w95-tray">
+                <button class="w95-tray-audio-btn" onclick="toggleAudio()" title="${sounds.muted ? 'Unmute' : 'Mute'}">
+                  ${sounds.muted ? '🔇' : '🔊'}
+                </button>
+                <span>${timeStr}</span>
+              </div>
+            </footer>
+
+            <!-- Shutdown Dialog -->
+            ${state.showShutdown ? `
+              <div class="shutdown-modal-backdrop" onclick="sounds.playDing()">
+                <div class="w95-window shutdown-dialog" onclick="event.stopPropagation()">
+                  <div class="win95-titlebar">
+                    <div class="win95-title-left">
+                      <span>💻</span><span>Shut Down Windows</span>
+                    </div>
+                    <div class="win95-title-controls">
+                      <button class="win95-title-btn" onclick="state.showShutdown=false; render()">✕</button>
+                    </div>
+                  </div>
+                  <div class="shutdown-dialog-content">
+                    <div style="font-size:32px">🖥️</div>
+                    <div style="display:flex; flex-direction:column; gap:8px">
+                      <p>What would you like the computer to do?</p>
+                      <label style="display:flex; align-items:center; gap:6px">
+                        <input type="radio" checked readonly><span>Shut down</span>
+                      </label>
+                      <label style="display:flex; align-items:center; gap:6px; color:#888888">
+                        <input type="radio" disabled><span>Restart</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div style="display:flex; justify-content:flex-end; gap:6px; padding:8px 12px; border-top:1px solid #dfdfdf">
+                    <button class="win95-btn" onclick="state.showShutdown=false; state.isShutDown=true; render()">Yes</button>
+                    <button class="win95-btn" onclick="state.showShutdown=false; render()">No</button>
+                    <button class="win95-btn" onclick="sounds.playDing(); alert('Help: Use the 3 desktop icons to view About Me, Projects, and Achievements!')">Help</button>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+
+        root.innerHTML = html;
+      }
+
+      /* Global Interaction Helpers */
+      function setAboutTab(tab) {
+        sounds.playClick();
+        state.windows.about.tab = tab;
+        render();
+      }
+
+      function selectProject(id) {
+        sounds.playClick();
+        state.windows.projects.selectedProject = id;
+        render();
+      }
+
+      function cycleProject(delta) {
+        sounds.playClick();
+        const curIdx = PROJECTS.findIndex(p => p.id === state.windows.projects.selectedProject);
+        const nextIdx = (curIdx + delta + PROJECTS.length) % PROJECTS.length;
+        state.windows.projects.selectedProject = PROJECTS[nextIdx].id;
+        render();
+      }
+
+      function setAwardsFilter(f) {
+        sounds.playClick();
+        state.windows.achievements.filter = f;
+        render();
+      }
+
+      function selectAward(id) {
+        sounds.playClick();
+        state.windows.achievements.selectedAward = id;
+        render();
+      }
+
+      function toggleStart(e) {
+        e.stopPropagation();
+        triggerInitialSound();
+        sounds.playClick();
+        state.startOpen = !state.startOpen;
+        render();
+      }
+
+      function toggleAudio() {
+        const m = sounds.toggleMute();
+        if (!m) sounds.playClick();
+        render();
+      }
+
+      function restartSystem() {
+        state.isShutDown = false;
+        sounds.playStartup();
+        render();
+      }
+
+      function handleDesktopClick(e) {
+        triggerInitialSound();
+        if (!e.target.closest('.w95-desktop-icon') && !e.target.closest('.w95-start-btn') && !e.target.closest('.w95-start-menu')) {
+          state.selectedIcon = null;
+          state.startOpen = false;
+          render();
+        }
+      }
+
+      function selectIcon(e, id) {
+        e.stopPropagation();
+        triggerInitialSound();
+        sounds.playClick();
+        state.selectedIcon = id;
+        render();
+      }
+
+      function handleTaskbarClick(id) {
+        sounds.playClick();
+        const win = state.windows[id];
+        if (win.isMinimized) {
+          bringToFront(id);
+        } else if (state.activeId === id) {
+          toggleMinimize(id);
+        } else {
+          bringToFront(id);
+        }
+      }
+
+      /* Window Dragging */
+      let dragState = null;
+      function startDrag(e, id) {
+        if (e.target.closest('button') || state.windows[id].isMaximized) return;
+        bringToFront(id);
+        dragState = {
+          id,
+          startX: e.clientX,
+          startY: e.clientY,
+          winX: state.windows[id].x,
+          winY: state.windows[id].y
+        };
+      }
+
+      /* Window Resizing */
+      let resizeState = null;
+      function startResize(e, id) {
+        e.stopPropagation();
+        bringToFront(id);
+        resizeState = {
+          id,
+          startX: e.clientX,
+          startY: e.clientY,
+          winW: state.windows[id].w,
+          winH: state.windows[id].h
+        };
+      }
+
+      window.addEventListener('mousemove', e => {
+        if (dragState) {
+          const dx = e.clientX - dragState.startX;
+          const dy = e.clientY - dragState.startY;
+          state.windows[dragState.id].x = Math.max(0, Math.min(window.innerWidth - 80, dragState.winX + dx));
+          state.windows[dragState.id].y = Math.max(0, Math.min(window.innerHeight - 80, dragState.winY + dy));
+          const el = document.getElementById('win-' + dragState.id);
+          if (el) {
+            el.style.left = state.windows[dragState.id].x + 'px';
+            el.style.top = state.windows[dragState.id].y + 'px';
+          }
+        } else if (resizeState) {
+          const dx = e.clientX - resizeState.startX;
+          const dy = e.clientY - resizeState.startY;
+          state.windows[resizeState.id].w = Math.max(340, resizeState.winW + dx);
+          state.windows[resizeState.id].h = Math.max(240, resizeState.winH + dy);
+          const el = document.getElementById('win-' + resizeState.id);
+          if (el) {
+            el.style.width = state.windows[resizeState.id].w + 'px';
+            el.style.height = state.windows[resizeState.id].h + 'px';
+          }
+        }
+      });
+
+      window.addEventListener('mouseup', () => {
+        dragState = null;
+        resizeState = null;
+      });
+
+      // Clock interval
+      setInterval(() => {
+        if (!state.isShutDown) render();
+      }, 1000);
+
+      // Initial Mount
+      render();
+    </script>
+  </body>
+</html>

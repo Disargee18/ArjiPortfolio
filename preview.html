@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Argee Boy Paquibot — Windows 95 Portfolio</title>
+    <meta
+      name="description"
+      content="Interactive retro Windows 95 desktop portfolio of Argee Boy Paquibot — Full-Stack Developer, Hackathon Champion, and Student Leader."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>"
+    />
+    <!-- React & Babel for zero-setup instant local preview -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="./src/styles/win95.css" />
+    <link rel="stylesheet" href="./src/styles/desktop.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+      import { PROFILE, EDUCATION, SKILL_CATEGORIES, PROJECTS, ACHIEVEMENTS } from './src/data/resumeData.js';
+      import { sounds } from './src/os/soundEffects.js';
+      import WindowFrame from './src/os/WindowFrame.jsx';
+      import Taskbar from './src/os/Taskbar.jsx';
+      import StartMenu from './src/os/StartMenu.jsx';
+      import AboutApp from './src/apps/AboutApp.jsx';
+      import ProjectsApp from './src/apps/ProjectsApp.jsx';
+      import AchievementsApp from './src/apps/AchievementsApp.jsx';
+      import Desktop from './src/os/Desktop.jsx';
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<Desktop />);
+    </script>
+  </body>
+</html>

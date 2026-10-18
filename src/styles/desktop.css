@@ -1,0 +1,1650 @@
+/* ============================================================
+   WINDOWS 95 DESKTOP, WINDOWS & APPLICATION STYLES
+   ============================================================ */
+
+/* ---------- Desktop surface ---------- */
+.w95-desktop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: var(--w95-teal);
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 8px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Icons Grid */
+.w95-desktop-icons {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 20px 24px;
+  z-index: 1;
+}
+
+.w95-desktop-icon {
+  width: 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px dotted transparent;
+  padding: 4px 2px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.w95-desktop-icon:hover {
+  background: rgba(0, 0, 128, 0.15);
+}
+
+.w95-desktop-icon.selected {
+  border-color: #ffff80;
+  background-color: rgba(0, 0, 128, 0.6);
+}
+
+.w95-desktop-icon.selected .w95-icon-label {
+  background-color: var(--w95-navy-dark);
+  color: #ffffff;
+}
+
+.w95-icon-graphic {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.45));
+}
+
+.w95-icon-label {
+  font-size: 11px;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000000;
+  padding: 1px 3px;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+/* ---------- Windows Layer & Frames ---------- */
+.w95-windows-container {
+  position: absolute;
+  inset: 0;
+  bottom: 30px;
+  pointer-events: none;
+}
+
+.w95-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark),
+    inset 2px 2px 0px var(--w95-surface-light),
+    inset -2px -2px 0px var(--w95-shadow-light),
+    3px 3px 10px rgba(0, 0, 0, 0.4);
+  background-color: var(--w95-surface);
+  min-width: 320px;
+  min-height: 220px;
+  max-width: 100vw;
+  max-height: calc(100vh - 30px);
+  overflow: hidden;
+}
+
+.w95-window.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  box-shadow: none;
+}
+
+.w95-window.minimized {
+  display: none;
+}
+
+.w95-window-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--w95-surface);
+  padding: 6px;
+}
+
+.w95-window-inner-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--w95-surface);
+}
+
+/* Resize corner handle */
+.w95-resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  cursor: se-resize;
+  background: 
+    linear-gradient(135deg, transparent 0%, transparent 50%, var(--w95-shadow-light) 50%, var(--w95-shadow-light) 60%, transparent 60%, transparent 70%, var(--w95-shadow-light) 70%, var(--w95-shadow-light) 80%, transparent 80%, transparent 90%, var(--w95-shadow-light) 90%);
+}
+
+/* ---------- Windows 95 Taskbar ---------- */
+.w95-taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background-color: var(--w95-surface);
+  display: flex;
+  align-items: center;
+  padding: 2px 3px;
+  gap: 4px;
+  z-index: 9999;
+  box-shadow: 
+    inset 0 1px 0px var(--w95-highlight),
+    inset 0 2px 0px var(--w95-surface-light);
+  border-top: 1px solid var(--w95-highlight);
+}
+
+/* Start Button */
+.w95-start-btn {
+  height: 24px;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: bold;
+  background-color: var(--w95-surface);
+  border: none;
+  cursor: pointer;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark),
+    inset 2px 2px 0px var(--w95-surface-light),
+    inset -2px -2px 0px var(--w95-shadow-light);
+}
+
+.w95-start-btn:active,
+.w95-start-btn.active {
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light),
+    inset -2px -2px 0px var(--w95-surface-light);
+  padding: 3px 5px 1px 7px;
+}
+
+/* Windows 95 4-Color Logo */
+.w95-logo-quad {
+  display: grid;
+  grid-template-columns: 7px 7px;
+  grid-template-rows: 7px 7px;
+  gap: 1px;
+  transform: rotate(-10deg) skew(-5deg, -5deg);
+}
+
+.w95-logo-red { background-color: #ff3333; }
+.w95-logo-green { background-color: #33cc33; }
+.w95-logo-blue { background-color: #0066cc; }
+.w95-logo-yellow { background-color: #ffcc00; }
+
+/* Running Taskbar Tabs */
+.w95-taskbar-tasks {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  overflow-x: auto;
+  height: 100%;
+}
+
+.w95-taskbar-item {
+  height: 24px;
+  max-width: 170px;
+  min-width: 110px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  background-color: var(--w95-surface);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark),
+    inset 2px 2px 0px var(--w95-surface-light),
+    inset -2px -2px 0px var(--w95-shadow-light);
+}
+
+.w95-taskbar-item.active {
+  background-color: #dedede;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light),
+    inset -2px -2px 0px var(--w95-surface-light);
+  font-weight: bold;
+}
+
+.w95-taskbar-item span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* System Tray */
+.w95-tray {
+  height: 24px;
+  padding: 2px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--w95-surface);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-light),
+    inset -1px -1px 0px var(--w95-highlight);
+  font-size: 11px;
+  color: #000000;
+}
+
+.w95-tray-audio-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 1px 2px;
+}
+
+.w95-tray-audio-btn:hover {
+  filter: brightness(1.2);
+}
+
+/* ---------- Windows 95 Start Menu ---------- */
+.w95-start-menu {
+  position: absolute;
+  bottom: 30px;
+  left: 2px;
+  width: 210px;
+  background-color: var(--w95-surface);
+  display: flex;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark),
+    inset 2px 2px 0px var(--w95-surface-light),
+    inset -2px -2px 0px var(--w95-shadow-light),
+    3px 3px 8px rgba(0, 0, 0, 0.4);
+  z-index: 10000;
+}
+
+.w95-start-sidebar {
+  width: 28px;
+  background: linear-gradient(180deg, var(--w95-navy-dark) 0%, #000040 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 8px;
+}
+
+.w95-start-sidebar-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.w95-start-sidebar-text span {
+  color: #c0c0c0;
+  font-weight: normal;
+}
+
+.w95-start-items {
+  flex: 1;
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.w95-start-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  font-size: 11px;
+  color: #000000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: left;
+  width: 100%;
+}
+
+.w95-start-item:hover {
+  background-color: var(--w95-navy-dark);
+  color: #ffffff;
+}
+
+.w95-start-item-icon {
+  font-size: 18px;
+  width: 22px;
+  text-align: center;
+}
+
+.w95-start-divider {
+  height: 2px;
+  margin: 4px 6px;
+  border-top: 1px solid var(--w95-shadow-light);
+  border-bottom: 1px solid var(--w95-highlight);
+}
+
+/* ============================================================
+   APPLICATION 1: ABOUT ME (about.exe)
+   ============================================================ */
+.about-app {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 11px;
+}
+
+.about-hero {
+  display: flex;
+  gap: 14px;
+  padding: 10px;
+  background-color: #ffffff;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light),
+    inset -2px -2px 0px var(--w95-surface-light);
+}
+
+.about-avatar-frame {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #000080, #1084d0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark);
+}
+
+.about-avatar-initials {
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.about-avatar-sub {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ffff80;
+}
+
+.about-hero-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  justify-content: center;
+}
+
+.about-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--w95-navy-dark);
+}
+
+.about-role {
+  font-size: 11px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.about-location {
+  font-size: 10px;
+  color: #555555;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.about-summary-box {
+  padding: 8px 10px;
+  line-height: 1.45;
+  color: #111111;
+  background: #ffffff;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-light),
+    inset -1px -1px 0px var(--w95-highlight);
+  font-size: 11px;
+}
+
+/* Skills grid */
+.about-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+
+.about-skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 6px;
+}
+
+.about-skill-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.about-meter-track {
+  height: 12px;
+  background-color: #ffffff;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight);
+  padding: 1px;
+  display: flex;
+}
+
+.about-meter-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--w95-navy-dark) 0px,
+    var(--w95-navy-dark) 6px,
+    #ffffff 6px,
+    #ffffff 8px
+  );
+}
+
+/* Education row */
+.about-edu-card {
+  background: #ffffff;
+  padding: 8px;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-light),
+    inset -1px -1px 0px var(--w95-highlight);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-edu-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.about-badge {
+  background-color: #e8e8e8;
+  border: 1px solid #999999;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--w95-navy-dark);
+}
+
+/* Contact buttons */
+.about-contacts-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   ABOUT: RESUME DOCUMENT VIEWER (WordPad / Print Preview Style)
+   ============================================================ */
+.about-resume-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-resume-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  background-color: var(--w95-surface);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark);
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.about-resume-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.about-resume-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.about-resume-sheet {
+  background-color: #ffffff;
+  padding: 24px 28px;
+  color: #111111;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.45;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light),
+    0 3px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 11px;
+}
+
+.resume-header {
+  text-align: center;
+  border-bottom: 2px solid #000000;
+  padding-bottom: 10px;
+}
+
+.resume-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #000000;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.resume-contact-line {
+  font-size: 10px;
+  color: #333333;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.resume-contact-line a {
+  color: #0000aa;
+  text-decoration: underline;
+}
+
+.resume-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.resume-section-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #000000;
+  border-bottom: 1.5px solid #000000;
+  padding-bottom: 2px;
+  margin-bottom: 3px;
+}
+
+.resume-project-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 6px;
+}
+
+.resume-project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.resume-project-name {
+  font-size: 11px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.resume-project-award {
+  font-size: 10px;
+  font-style: italic;
+  color: #444444;
+}
+
+.resume-bullets {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 10.5px;
+  color: #222222;
+}
+
+.resume-skills-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+.resume-awards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resume-award-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 10.5px;
+  border-bottom: 1px dotted #cccccc;
+  padding-bottom: 2px;
+}
+
+.resume-footer {
+  text-align: center;
+  font-size: 9.5px;
+  color: #777777;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 8px;
+  margin-top: 6px;
+}
+
+/* ============================================================
+   APPLICATION 2: PROJECTS (projects.exe - Retro Internet Explorer)
+   ============================================================ */
+.projects-app {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+  background-color: var(--w95-surface);
+}
+
+/* IE Toolbar */
+.ie-menubar {
+  display: flex;
+  gap: 12px;
+  padding: 2px 6px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--w95-shadow-light);
+  box-shadow: 0 1px 0 #ffffff;
+}
+
+.ie-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 6px;
+  border-bottom: 1px solid var(--w95-shadow-light);
+  box-shadow: 0 1px 0 #ffffff;
+  overflow-x: auto;
+}
+
+.ie-tool-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 9px;
+  color: #000000;
+  gap: 1px;
+}
+
+.ie-tool-btn:hover {
+  background-color: var(--w95-surface);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark);
+}
+
+.ie-tool-icon {
+  font-size: 14px;
+}
+
+.ie-address-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-bottom: 2px groove #ffffff;
+}
+
+.ie-address-label {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.ie-address-input {
+  flex: 1;
+  height: 20px;
+  padding: 0 6px;
+  background-color: #ffffff;
+  border: none;
+  font-size: 11px;
+  font-family: var(--w95-font-mono);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light);
+}
+
+.ie-viewport {
+  flex: 1;
+  min-height: 200px;
+  display: flex;
+  overflow: hidden;
+  background-color: #ffffff;
+  margin: 4px;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light);
+}
+
+/* Sidebar with project tabs */
+.ie-project-sidebar {
+  width: 175px;
+  min-width: 165px;
+  flex-shrink: 0;
+  background-color: var(--w95-surface);
+  border-right: 2px groove #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.ie-sidebar-header {
+  padding: 6px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #dedede;
+  border-bottom: 1px solid var(--w95-shadow-light);
+}
+
+.ie-project-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 8px;
+  font-size: 11px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px dotted var(--w95-shadow-light);
+  cursor: pointer;
+  color: #000000;
+  width: 100%;
+}
+
+.ie-project-tab-btn:hover {
+  background-color: #e5e5e5;
+}
+
+.ie-project-tab-btn.active {
+  background-color: var(--w95-navy-dark);
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Main Project View */
+.ie-project-display {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 11px;
+}
+
+.project-award-banner {
+  padding: 6px 10px;
+  border: 1px dashed #b8860b;
+  background-color: #fffde6;
+  color: #8b6508;
+  font-weight: bold;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-award-banner.gold {
+  border-color: #d4af37;
+  background-color: #fff9db;
+  color: #806000;
+}
+
+.project-award-banner.silver {
+  border-color: #7f8c8d;
+  background-color: #f2f3f4;
+  color: #2c3e50;
+}
+
+.project-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--w95-navy-dark);
+  padding-bottom: 4px;
+}
+
+.project-main-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--w95-navy-dark);
+}
+
+.project-category {
+  font-size: 11px;
+  color: #555555;
+  font-style: italic;
+}
+
+.project-bullets-list {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  line-height: 1.4;
+}
+
+.project-tech-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.project-tech-chip {
+  background-color: #f0f0f0;
+  border: 1px solid #999999;
+  padding: 2px 7px;
+  font-size: 10px;
+  font-family: var(--w95-font-mono);
+}
+
+.project-action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* ============================================================
+   APPLICATION 3: ACHIEVEMENTS (awards.exe - Certificate & Trophy Showcase)
+   ============================================================ */
+.awards-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px;
+  gap: 8px;
+}
+
+.awards-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  background-color: #ffffff;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-light),
+    inset -1px -1px 0px var(--w95-highlight);
+}
+
+.awards-filter-group {
+  display: flex;
+  gap: 4px;
+}
+
+.awards-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.awards-list-panel {
+  background-color: #ffffff;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.award-item-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: none;
+  border-bottom: 1px solid #eeeeee;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.award-item-btn:hover {
+  background-color: #f4f4f4;
+}
+
+.award-item-btn.selected {
+  background-color: var(--w95-navy-dark);
+  color: #ffffff;
+}
+
+.award-item-icon {
+  font-size: 20px;
+}
+
+.award-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.award-item-title {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.award-item-event {
+  font-size: 9px;
+  opacity: 0.85;
+}
+
+/* Vintage Certificate Display */
+.award-certificate-view {
+  background-color: #ffffff;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight);
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.certificate-border-frame {
+  width: 100%;
+  max-width: 520px;
+  border: 4px double #8b6508;
+  padding: 18px 22px;
+  background: #fdfcf7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-header-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #8b6508;
+  margin-bottom: 4px;
+}
+
+.certificate-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #d4af37;
+  padding-bottom: 6px;
+  width: 100%;
+}
+
+.certificate-present-text {
+  font-size: 10px;
+  font-style: italic;
+  color: #666666;
+  margin: 4px 0;
+}
+
+.certificate-recipient {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--w95-navy-dark);
+  font-family: Georgia, "Times New Roman", serif;
+  border-bottom: 1px dotted #888888;
+  padding: 2px 20px;
+  margin-bottom: 8px;
+}
+
+.certificate-body-desc {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #333333;
+  margin: 6px 0 12px 0;
+}
+
+.certificate-seal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #e0d8b0;
+}
+
+.certificate-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 9px;
+  color: #555555;
+}
+
+.certificate-sig-line {
+  width: 110px;
+  border-bottom: 1px solid #000000;
+  margin-bottom: 3px;
+}
+
+.certificate-gold-seal {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffe066 30%, #d4af37 80%, #997a15 100%);
+  border: 2px dashed #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================================
+   SHUT DOWN MODAL & RETRO "SAFE TO TURN OFF" SCREEN
+   ============================================================ */
+.shutdown-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20000;
+}
+
+.shutdown-dialog {
+  width: 320px;
+  background-color: var(--w95-surface);
+}
+
+.shutdown-dialog-content {
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+}
+
+.shutdown-computer-icon {
+  font-size: 32px;
+}
+
+.shutdown-safe-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #000000;
+  color: #ff9900;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  z-index: 30000;
+  text-align: center;
+  font-family: var(--w95-font-mono);
+}
+
+.shutdown-safe-text {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.reboot-btn {
+  background-color: #222222;
+  color: #ff9900;
+  border: 2px solid #ff9900;
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: var(--w95-font-mono);
+}
+
+.reboot-btn:hover {
+  background-color: #ff9900;
+  color: #000000;
+}
+
+/* ============================================================
+   APPLICATION 4: MAIL / CONTACT (mail.exe - Outlook Express / Compose)
+   ============================================================ */
+.mail-retro-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--w95-surface);
+}
+
+.mail-retro-menubar {
+  display: flex;
+  gap: 12px;
+  padding: 2px 6px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--w95-shadow-light);
+  box-shadow: 0 1px 0 #ffffff;
+}
+
+.mail-retro-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 6px;
+  border-bottom: 1px solid var(--w95-shadow-light);
+  box-shadow: 0 1px 0 #ffffff;
+}
+
+.mail-toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+}
+
+.mail-toolbar-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.mail-retro-divider {
+  width: 2px;
+  height: 18px;
+  margin: 0 4px;
+  border-left: 1px solid var(--w95-shadow-light);
+  border-right: 1px solid var(--w95-highlight);
+}
+
+.mail-retro-canvas {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: var(--w95-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.mail-compose-form {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  height: 100%;
+}
+
+.mail-compose-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mail-field-btn {
+  min-width: 65px;
+  height: 22px;
+  font-size: 11px;
+  padding: 1px 6px;
+}
+
+.mail-field-label {
+  min-width: 90px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #000000;
+  text-align: right;
+  padding-right: 4px;
+}
+
+.mail-sunken-field {
+  flex: 1;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  background-color: #ffffff;
+  font-size: 11px;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light);
+}
+
+.mail-sunken-field.readonly-field {
+  background-color: #f0f0f0;
+  color: #222222;
+}
+
+.mail-sunken-input {
+  flex: 1;
+  height: 22px;
+  padding: 0 6px;
+  background-color: #ffffff;
+  border: none;
+  font-size: 11px;
+  font-family: var(--w95-font);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light);
+}
+
+.mail-sunken-input:focus {
+  outline: 1px dotted #000080;
+  outline-offset: -2px;
+}
+
+.mail-textarea-wrapper {
+  flex: 1;
+  min-height: 170px;
+  display: flex;
+  margin-top: 4px;
+}
+
+.mail-sunken-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 6px;
+  background-color: #ffffff;
+  border: none;
+  font-size: 12px;
+  font-family: var(--w95-font);
+  line-height: 1.45;
+  resize: vertical;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light);
+}
+
+.mail-sunken-textarea:focus {
+  outline: 1px dotted #000080;
+  outline-offset: -2px;
+}
+
+.mail-error-banner {
+  padding: 4px 8px;
+  background-color: #ffffcc;
+  border: 1px solid #cc9900;
+  color: #990000;
+  font-size: 11px;
+}
+
+.mail-action-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.mail-submit-btn {
+  font-weight: bold;
+  min-width: 130px;
+}
+
+/* Retro Sent Notification */
+.mail-dialog-box {
+  max-width: 440px;
+  margin: 40px auto;
+  padding: 18px 20px;
+  background-color: var(--w95-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.mail-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* ============================================================
+   WINDOWS 95 NOTEPAD (resume.txt) STYLES
+   ============================================================ */
+.notepad-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: var(--w95-surface);
+  user-select: none;
+}
+
+.notepad-menubar {
+  display: flex;
+  align-items: center;
+  background-color: var(--w95-surface);
+  border-bottom: 1px solid var(--w95-shadow-light);
+  padding: 2px 4px;
+  position: relative;
+  z-index: 10;
+  gap: 2px;
+}
+
+.notepad-menu-item-wrap {
+  position: relative;
+}
+
+.notepad-menu-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 2px 6px;
+  font-family: var(--w95-font);
+  font-size: 11px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.notepad-menu-btn:hover,
+.notepad-menu-btn.active {
+  background-color: var(--w95-navy-dark);
+  color: #ffffff;
+}
+
+.notepad-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--w95-surface);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-highlight),
+    inset -1px -1px 0px var(--w95-shadow-dark),
+    inset 2px 2px 0px var(--w95-surface-light),
+    inset -2px -2px 0px var(--w95-shadow-light),
+    2px 2px 5px rgba(0, 0, 0, 0.35);
+  padding: 2px;
+  min-width: 170px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
+.notepad-drop-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 3px 8px;
+  font-family: var(--w95-font);
+  font-size: 11px;
+  color: #000000;
+  cursor: pointer;
+  text-align: left;
+}
+
+.notepad-drop-item:hover {
+  background-color: var(--w95-navy-dark);
+  color: #ffffff;
+}
+
+.notepad-shortcut {
+  color: #666666;
+  font-size: 10px;
+  margin-left: 16px;
+}
+
+.notepad-drop-item:hover .notepad-shortcut {
+  color: #ffffff;
+}
+
+.notepad-drop-divider {
+  height: 1px;
+  background-color: var(--w95-shadow-light);
+  border-bottom: 1px solid var(--w95-highlight);
+  margin: 2px 1px;
+}
+
+.notepad-quick-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.notepad-quick-actions .win95-btn {
+  font-size: 10px;
+  padding: 2px 6px;
+}
+
+.notepad-editor-container {
+  flex: 1;
+  position: relative;
+  background-color: #ffffff;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light);
+  margin: 2px 2px 0 2px;
+  overflow: hidden;
+  display: flex;
+}
+
+.notepad-textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  font-family: 'Courier New', Courier, monospace, var(--w95-font);
+  font-size: 12px;
+  line-height: 1.45;
+  color: #000000;
+  background-color: #ffffff;
+  resize: none;
+  user-select: text;
+}
+
+.notepad-textarea.wrap {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.notepad-textarea.nowrap {
+  white-space: pre;
+  overflow: scroll;
+}
+
+/* Classic Win95 Status Bar */
+.win95-statusbar {
+  display: flex;
+  align-items: center;
+  background-color: var(--w95-surface);
+  border-top: 1px solid var(--w95-highlight);
+  padding: 2px 4px;
+  gap: 4px;
+  font-size: 11px;
+  font-family: var(--w95-font);
+}
+
+.win95-status-field {
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-light),
+    inset -1px -1px 0px var(--w95-highlight);
+  padding: 2px 6px;
+  color: #000000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.win95-status-field.fixed {
+  flex: 0 0 auto;
+  min-width: 75px;
+  text-align: center;
+}
+
+/* ============================================================
+   WINDOWS 95 PDF / DOCUMENT VIEWER (resume.pdf) STYLES
+   ============================================================ */
+.pdf-viewer-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: var(--w95-surface);
+  user-select: none;
+}
+
+.pdf-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  background-color: var(--w95-surface);
+  border-bottom: 1px solid var(--w95-shadow-light);
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pdf-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pdf-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.pdf-view-toggle {
+  display: flex;
+  background-color: var(--w95-surface);
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight);
+  padding: 2px;
+  gap: 2px;
+}
+
+.pdf-view-toggle button {
+  background: transparent;
+  border: none;
+  font-family: var(--w95-font);
+  font-size: 11px;
+  padding: 2px 7px;
+  cursor: pointer;
+  color: #000000;
+}
+
+.pdf-view-toggle button:hover {
+  background-color: rgba(0, 0, 128, 0.1);
+}
+
+.pdf-view-toggle button.active {
+  background-color: var(--w95-navy-dark);
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.pdf-content-area {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  background-color: #555555;
+  box-shadow: 
+    inset 1px 1px 0px var(--w95-shadow-dark),
+    inset -1px -1px 0px var(--w95-highlight),
+    inset 2px 2px 0px var(--w95-shadow-light);
+  margin: 2px;
+  display: flex;
+}
+
+.pdf-content-area.sheet-mode {
+  background-color: #7f7f7f;
+  padding: 16px;
+  display: block;
+}
+
+.pdf-iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  border: none;
+  background-color: #ffffff;
+}
+
+
